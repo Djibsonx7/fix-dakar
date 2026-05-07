@@ -49,6 +49,27 @@ function SmartWhatsAppForm() {
   );
 }
 
+function FaqAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <div className="faq-list">
+      {faqs.map(([question, answer], index) => {
+        const isOpen = openIndex === index;
+        return (
+          <article className={`faq-item ${isOpen ? 'open' : ''}`} key={question}>
+            <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)}>
+              <span>{question}</span>
+              <strong>{isOpen ? '−' : '+'}</strong>
+            </button>
+            <div className="faq-answer"><p>{answer}</p></div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <main className="site-shell">
@@ -109,7 +130,7 @@ export default function HomePage() {
       </section>
 
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{areas.map((a) => <span key={a}>{a}</span>)}</div></section>
-      <section className="section faq-section"><p className="eyebrow">Questions frequentes</p><h2>Avant de contacter FIX.</h2><div className="faq-grid">{faqs.map(([q, a]) => <article key={q}><h3>{q}</h3><p>{a}</p></article>)}</div></section>
+      <section className="section faq-section"><p className="eyebrow">Questions frequentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
       <footer className="footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p></div><div><a href="tel:+221777989238" data-conversion="call-footer">+221 77 798 92 38</a><a href={whatsappLink(quickMessage())} data-conversion="whatsapp-footer">WhatsApp</a></div></footer>
     </main>
