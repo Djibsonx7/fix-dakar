@@ -14,9 +14,11 @@ function quickMessage(problem = 'machine a laver') {
   return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour ma ${problem}. Je suis a Dakar.`;
 }
 
-const pains = ['Ne demarre plus', 'Fuite d eau', 'Probleme de vidange', 'Tambour bloque', 'Bruit anormal', 'Essorage impossible'];
+const pains = ['Ne demarre plus', 'Fuite d eau', 'Probleme de vidange', 'Tambour bloque', 'Bruit anormal', 'Essorage impossible', 'Autre panne'];
+const quickPains = pains.filter((pain) => pain !== 'Autre panne');
 const brands = ['Samsung', 'LG', 'Beko', 'Whirlpool', 'Hisense', 'Roch', 'Autre'];
-const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Coeur', 'Grand Yoff', 'Point E'];
+const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Coeur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
+const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
   { status: 'Panne qualifiée', title: 'Fuite d’eau signalée', meta: 'Ouakam • Diagnostic' },
@@ -121,7 +123,7 @@ export default function HomePage() {
 
       <section className="section grid-two">
         <div><p className="eyebrow">Pannes frequentes</p><h2>On règle les problèmes qui bloquent votre journée.</h2></div>
-        <div className="chips">{pains.map((p) => <a className="quick-chip" href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain"><span>{p}</span><small>WhatsApp</small><b>→</b></a>)}</div>
+        <div className="chips">{quickPains.map((p) => <a className="quick-chip" href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain"><span>{p}</span><small>WhatsApp</small><b>→</b></a>)}</div>
       </section>
 
       <section className="section cards">
@@ -150,7 +152,7 @@ export default function HomePage() {
         <SmartWhatsAppForm />
       </section>
 
-      <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{areas.map((a) => <span key={a}>{a}</span>)}</div></section>
+      <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{displayAreas.map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div></section>
       <section className="section faq-section"><p className="eyebrow">Questions frequentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
       <footer className="footer upgraded-footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div><div className="footer-links"><a href="tel:+221777989238" data-conversion="call-footer">+221 77 798 92 38</a><a href="mailto:contact@fenixfuz.com">contact@fenixfuz.com</a><a href={whatsappLink(quickMessage())} data-conversion="whatsapp-footer">WhatsApp</a><Link href="/mentions-legales">Mentions légales</Link><Link href="/confidentialite">Confidentialité</Link></div></footer>
