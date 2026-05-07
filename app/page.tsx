@@ -17,6 +17,12 @@ function quickMessage(problem = 'machine a laver') {
 const pains = ['Ne demarre plus', 'Fuite d eau', 'Probleme de vidange', 'Tambour bloque', 'Bruit anormal', 'Essorage impossible'];
 const brands = ['Samsung', 'LG', 'Beko', 'Whirlpool', 'Hisense', 'Roch', 'Autre'];
 const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Coeur', 'Grand Yoff', 'Point E'];
+const liveUpdates = [
+  { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
+  { status: 'Panne qualifiée', title: 'Fuite d’eau signalée', meta: 'Ouakam • Diagnostic' },
+  { status: 'Réponse envoyée', title: 'Technicien disponible', meta: 'Almadies • Assistance FIX' },
+  { status: 'Besoin confirmé', title: 'Essorage impossible', meta: 'Grand Yoff • Suivi client' },
+];
 const faqs = [
   ['Combien coûte une réparation machine à laver à Dakar ?', 'Le prix dépend de la panne, de la marque et des pièces nécessaires. FIX privilégie un diagnostic clair avant toute réparation importante.'],
   ['Intervenez-vous à domicile ?', 'Oui, l’intervention peut se faire à domicile selon votre quartier et la disponibilité du technicien.'],
@@ -46,6 +52,20 @@ function SmartWhatsAppForm() {
       </div>
       <div className="message-preview"><span>Message prepare</span><p>{message}</p></div>
       <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-form">Envoyer sur WhatsApp</a>
+    </div>
+  );
+}
+
+function LiveInterventionCard() {
+  return (
+    <div className="live-card-stack">
+      {liveUpdates.map((item, index) => (
+        <div className="status-card live-status-card" style={{ animationDelay: `${index * 3.2}s` }} key={item.status}>
+          <b>{item.status}</b>
+          <span>{item.title}</span>
+          <small>{item.meta}</small>
+        </div>
+      ))}
     </div>
   );
 }
@@ -95,7 +115,7 @@ export default function HomePage() {
         </div>
         <div className="hero-card">
           <div className="machine"><div className="screen"></div><div className="door"></div><div className="shine"></div></div>
-          <div className="status-card"><b>Intervention FIX</b><span>Machine qui ne vidange plus • WhatsApp reçu</span></div>
+          <LiveInterventionCard />
         </div>
       </section>
 
