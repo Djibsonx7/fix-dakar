@@ -4,28 +4,28 @@ export default function Confidentialite() {
       <h1 style={{fontSize:'48px',marginBottom:'24px'}}>Politique de confidentialité</h1>
 
       <p style={{opacity:.82,lineHeight:1.8}}>
-        Les informations transmises via WhatsApp ou via le site FIX Dakar servent uniquement à répondre aux demandes de dépannage et d’assistance.
+        FIX Dépannage Dakar respecte la confidentialité des informations transmises lors d’une demande d’assistance ou de dépannage.
       </p>
 
       <div style={{marginTop:'40px',display:'grid',gap:'18px'}}>
         <section>
-          <h2>Données transmises</h2>
+          <h2>Informations transmises</h2>
           <p>
-            Selon votre message, certaines informations peuvent être partagées : quartier, numéro de téléphone, marque de machine, description de panne ou photo.
+            Lorsque vous nous contactez, vous pouvez nous transmettre des informations utiles à votre demande : quartier, type de panne, marque de l’appareil ou photo.
           </p>
         </section>
 
         <section>
-          <h2>Utilisation</h2>
+          <h2>Utilisation des informations</h2>
           <p>
-            Ces informations servent uniquement à comprendre la panne et à organiser une intervention ou une assistance.
+            Ces informations servent uniquement à comprendre votre besoin, vous répondre et organiser une intervention si nécessaire.
           </p>
         </section>
 
         <section>
-          <h2>Mesure d’audience</h2>
+          <h2>Amélioration du site</h2>
           <p>
-            Le site peut utiliser des outils comme Google Analytics ou Google Ads afin d’améliorer les performances et mesurer les conversions.
+            Le site peut utiliser des outils de mesure afin d’améliorer l’expérience utilisateur et comprendre l’utilisation générale du site.
           </p>
         </section>
 
