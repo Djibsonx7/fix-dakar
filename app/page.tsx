@@ -58,6 +58,17 @@ function SmartWhatsAppForm() {
   );
 }
 
+function ContactVisual() {
+  return (
+    <div className="contact-visual" aria-hidden="true">
+      <div className="mini-machine"><div className="mini-screen"></div><div className="mini-door"></div><div className="mini-shine"></div></div>
+      <div className="message-bubble bubble-one"><b>Quartier</b><span>Yoff</span></div>
+      <div className="message-bubble bubble-two"><b>Panne</b><span>Vidange</span></div>
+      <div className="message-bubble bubble-three"><b>Message</b><span>Prêt</span></div>
+    </div>
+  );
+}
+
 function LiveInterventionCard() {
   return (
     <div className="live-card-stack">
@@ -73,7 +84,7 @@ function LiveInterventionCard() {
 }
 
 function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="faq-list">
@@ -148,7 +159,7 @@ export default function HomePage() {
       </section>
 
       <section id="whatsapp-intelligent" className="section form-zone">
-        <div><p className="eyebrow">WhatsApp intelligent</p><h2>Un contact plus précis qu’un simple bouton.</h2><p>Préparez un message clair en quelques secondes. Le client arrive sur WhatsApp avec un besoin déjà qualifié.</p></div>
+        <div><p className="eyebrow">WhatsApp intelligent</p><h2>Un contact plus précis qu’un simple bouton.</h2><p>Préparez un message clair en quelques secondes. Le client arrive sur WhatsApp avec un besoin déjà qualifié.</p><ContactVisual /></div>
         <SmartWhatsAppForm />
       </section>
 
