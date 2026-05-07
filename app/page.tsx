@@ -81,6 +81,21 @@ export default function HomePage() {
         <article><h3>03. Technicien fiable</h3><p>Un professionnel disponible intervient selon votre zone à Dakar.</p></article>
       </section>
 
+      <section className="section brand-section">
+        <p className="eyebrow">Marques reparees</p>
+        <h2>Compatible avec les grandes marques de machine à laver.</h2>
+        <div className="brand-grid">{brands.slice(0, 6).map((item) => <span key={item}>{item}</span>)}</div>
+      </section>
+
+      <section className="section promise-section">
+        <div><p className="eyebrow">Diagnostic & prix clair</p><h2>Pas de mauvaise surprise avant intervention.</h2></div>
+        <div className="promise-cards">
+          <article><b>Diagnostic d'abord</b><p>On comprend la panne avec vous avant de lancer une intervention.</p></article>
+          <article><b>Validation avant travaux</b><p>Le client est informé avant toute réparation importante.</p></article>
+          <article><b>Priorité au besoin réel</b><p>Si la panne ne vaut pas une grosse réparation, on vous l'explique clairement.</p></article>
+        </div>
+      </section>
+
       <section id="whatsapp-intelligent" className="section form-zone">
         <div><p className="eyebrow">WhatsApp intelligent</p><h2>Un contact plus précis qu’un simple bouton.</h2><p>Préparez un message clair en quelques secondes. Le client arrive sur WhatsApp avec un besoin déjà qualifié.</p></div>
         <SmartWhatsAppForm />
@@ -88,6 +103,7 @@ export default function HomePage() {
 
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{areas.map((a) => <span key={a}>{a}</span>)}</div></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())}>Contacter FIX</a></section>
+      <footer className="footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p></div><div><a href="tel:+221777989238">+221 77 798 92 38</a><a href={whatsappLink(quickMessage())}>WhatsApp</a></div></footer>
     </main>
   );
 }
