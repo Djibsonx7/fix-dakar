@@ -47,8 +47,8 @@ export default function HomePage() {
     <main className="site-shell">
       <nav className="nav">
         <div className="brand brand-with-logo">
-          <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={88} height={88} priority /></span>
-          <small>Dakar</small>
+          <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={64} height={64} priority /></span>
+          <div className="brand-text"><strong>FIX</strong><small>Dépannage Dakar</small></div>
         </div>
         <a className="nav-cta" href={whatsappLink(quickMessage())}>WhatsApp</a>
       </nav>
