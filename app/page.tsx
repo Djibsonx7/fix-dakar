@@ -121,7 +121,7 @@ export default function HomePage() {
 
       <section className="section grid-two">
         <div><p className="eyebrow">Pannes frequentes</p><h2>On règle les problèmes qui bloquent votre journée.</h2></div>
-        <div className="chips">{pains.map((p) => <a href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain">{p}</a>)}</div>
+        <div className="chips">{pains.map((p) => <a className="quick-chip" href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain"><span>{p}</span><small>WhatsApp</small><b>→</b></a>)}</div>
       </section>
 
       <section className="section cards">
