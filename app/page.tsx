@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useMemo, useState } from 'react';
 
 const phone = '221777989238';
@@ -45,7 +46,10 @@ export default function HomePage() {
   return (
     <main className="site-shell">
       <nav className="nav">
-        <div className="brand"><span>FIX</span><small>Dakar</small></div>
+        <div className="brand brand-with-logo">
+          <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={88} height={88} priority /></span>
+          <small>Dakar</small>
+        </div>
         <a className="nav-cta" href={whatsappLink(quickMessage())}>WhatsApp</a>
       </nav>
 
