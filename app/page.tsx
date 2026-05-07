@@ -111,7 +111,7 @@ export default function HomePage() {
             <a className="primary" href="#whatsapp-intelligent">Décrire mon problème</a>
             <a className="secondary" href="tel:+221777989238" data-conversion="call-hero">Appeler maintenant</a>
           </div>
-          <div className="trust-row"><span>5.0 avis Google</span><span>Techniciens fiables</span><span>Dakar</span></div>
+          <div className="trust-row"><span>5,0 ★ Google</span><span>Techniciens fiables</span><span>Dakar</span></div>
         </div>
         <div className="hero-card">
           <div className="machine"><div className="screen"></div><div className="door"></div><div className="shine"></div></div>
