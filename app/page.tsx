@@ -16,6 +16,13 @@ function quickMessage(problem = 'machine a laver') {
 const pains = ['Ne demarre plus', 'Fuite d eau', 'Probleme de vidange', 'Tambour bloque', 'Bruit anormal', 'Essorage impossible'];
 const brands = ['Samsung', 'LG', 'Beko', 'Whirlpool', 'Hisense', 'Roch', 'Autre'];
 const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Coeur', 'Grand Yoff', 'Point E'];
+const faqs = [
+  ['Combien coûte une réparation machine à laver à Dakar ?', 'Le prix dépend de la panne, de la marque et des pièces nécessaires. FIX privilégie un diagnostic clair avant toute réparation importante.'],
+  ['Intervenez-vous à domicile ?', 'Oui, l’intervention peut se faire à domicile selon votre quartier et la disponibilité du technicien.'],
+  ['Puis-je envoyer une photo ou une vidéo sur WhatsApp ?', 'Oui. C’est même recommandé pour comprendre rapidement le problème avant le déplacement.'],
+  ['Réparez-vous Samsung, LG, Beko ou Whirlpool ?', 'Oui, FIX peut orienter vers un technicien pour les grandes marques de machines à laver et lave-linge.'],
+  ['Quels quartiers de Dakar couvrez-vous ?', 'FIX intervient ou oriente vers un technicien dans plusieurs zones comme Yoff, Ouakam, Almadies, Hann, Maristes, Grand Yoff et quartiers proches.'],
+];
 
 function SmartWhatsAppForm() {
   const [area, setArea] = useState('Yoff');
@@ -37,7 +44,7 @@ function SmartWhatsAppForm() {
         <label>Precision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : elle s'allume mais ne vidange pas" /></label>
       </div>
       <div className="message-preview"><span>Message prepare</span><p>{message}</p></div>
-      <a className="primary wide" href={whatsappLink(message)}>Envoyer sur WhatsApp</a>
+      <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-form">Envoyer sur WhatsApp</a>
     </div>
   );
 }
@@ -50,7 +57,7 @@ export default function HomePage() {
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Machine à laver • Électroménager</small></div>
         </div>
-        <a className="nav-cta" href={whatsappLink(quickMessage())}>WhatsApp</a>
+        <a className="nav-cta" href={whatsappLink(quickMessage())} data-conversion="whatsapp-header">WhatsApp</a>
       </nav>
 
       <section className="hero">
@@ -60,7 +67,7 @@ export default function HomePage() {
           <p className="lead">Diagnostic clair, intervention rapide et assistance WhatsApp pour vos pannes de lave-linge et appareils électroménagers.</p>
           <div className="actions">
             <a className="primary" href="#whatsapp-intelligent">Décrire mon problème</a>
-            <a className="secondary" href="tel:+221777989238">Appeler maintenant</a>
+            <a className="secondary" href="tel:+221777989238" data-conversion="call-hero">Appeler maintenant</a>
           </div>
           <div className="trust-row"><span>5.0 avis Google</span><span>Techniciens fiables</span><span>Dakar</span></div>
         </div>
@@ -72,7 +79,7 @@ export default function HomePage() {
 
       <section className="section grid-two">
         <div><p className="eyebrow">Pannes frequentes</p><h2>On règle les problèmes qui bloquent votre journée.</h2></div>
-        <div className="chips">{pains.map((p) => <a href={whatsappLink(quickMessage(p))} key={p}>{p}</a>)}</div>
+        <div className="chips">{pains.map((p) => <a href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain">{p}</a>)}</div>
       </section>
 
       <section className="section cards">
@@ -102,8 +109,9 @@ export default function HomePage() {
       </section>
 
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{areas.map((a) => <span key={a}>{a}</span>)}</div></section>
-      <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())}>Contacter FIX</a></section>
-      <footer className="footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p></div><div><a href="tel:+221777989238">+221 77 798 92 38</a><a href={whatsappLink(quickMessage())}>WhatsApp</a></div></footer>
+      <section className="section faq-section"><p className="eyebrow">Questions frequentes</p><h2>Avant de contacter FIX.</h2><div className="faq-grid">{faqs.map(([q, a]) => <article key={q}><h3>{q}</h3><p>{a}</p></article>)}</div></section>
+      <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
+      <footer className="footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p></div><div><a href="tel:+221777989238" data-conversion="call-footer">+221 77 798 92 38</a><a href={whatsappLink(quickMessage())} data-conversion="whatsapp-footer">WhatsApp</a></div></footer>
     </main>
   );
 }
