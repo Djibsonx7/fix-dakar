@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     'FIX Dakar',
     'réparation électroménager Dakar',
   ],
+  verification: {
+    google: 'tAaWXb7_C-KS5YpIOggnimhWnZdzKFt8mFF75hw4SX8',
+  },
   alternates: {
     canonical: '/',
   },
