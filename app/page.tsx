@@ -33,11 +33,32 @@ const faqs = [
   ['Quels quartiers de Dakar couvrez-vous ?', 'FIX intervient ou oriente vers un technicien dans plusieurs zones comme Yoff, Ouakam, Almadies, Hann, Maristes, Grand Yoff et quartiers proches.'],
 ];
 
-function SmartWhatsAppForm() {
+type ContactVisualProps = {
+  area: string;
+  brand: string;
+  problem: string;
+  isReady: boolean;
+};
+
+function ContactVisual({ area, brand, problem, isReady }: ContactVisualProps) {
+  return (
+    <div className="contact-visual" aria-label="Aperçu du message WhatsApp préparé">
+      <div className="mini-machine"><div className="mini-screen"></div><div className="mini-door"></div><div className="mini-shine"></div></div>
+      <div className="message-bubble bubble-one"><b>Quartier</b><span>{area}</span></div>
+      <div className="message-bubble bubble-two"><b>Marque</b><span>{brand}</span></div>
+      <div className="message-bubble bubble-three"><b>Panne</b><span>{problem}</span></div>
+      <div className="message-bubble bubble-four"><b>Message</b><span>{isReady ? 'Prêt' : 'À compléter'}</span></div>
+    </div>
+  );
+}
+
+function SmartWhatsAppLead() {
   const [area, setArea] = useState('Yoff');
   const [brand, setBrand] = useState('Samsung');
   const [problem, setProblem] = useState('Ne demarre plus');
   const [details, setDetails] = useState('');
+
+  const isReady = Boolean(area && brand && problem);
 
   const message = useMemo(() => {
     const detailText = details.trim() ? `\nDetail : ${details.trim()}` : '';
@@ -45,27 +66,24 @@ function SmartWhatsAppForm() {
   }, [area, brand, problem, details]);
 
   return (
-    <div className="smart-card">
-      <div className="form-grid">
-        <label>Quartier<select value={area} onChange={(e) => setArea(e.target.value)}>{areas.map((item) => <option key={item}>{item}</option>)}</select></label>
-        <label>Marque<select value={brand} onChange={(e) => setBrand(e.target.value)}>{brands.map((item) => <option key={item}>{item}</option>)}</select></label>
-        <label>Panne<select value={problem} onChange={(e) => setProblem(e.target.value)}>{pains.map((item) => <option key={item}>{item}</option>)}</select></label>
-        <label>Precision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : elle s'allume mais ne vidange pas" /></label>
+    <>
+      <div>
+        <p className="eyebrow">WhatsApp intelligent</p>
+        <h2>Un contact plus précis qu’un simple bouton.</h2>
+        <p>Préparez un message clair en quelques secondes. Le client arrive sur WhatsApp avec un besoin déjà qualifié.</p>
+        <ContactVisual area={area} brand={brand} problem={problem} isReady={isReady} />
       </div>
-      <div className="message-preview"><span>Message prepare</span><p>{message}</p></div>
-      <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-form">Envoyer sur WhatsApp</a>
-    </div>
-  );
-}
-
-function ContactVisual() {
-  return (
-    <div className="contact-visual" aria-hidden="true">
-      <div className="mini-machine"><div className="mini-screen"></div><div className="mini-door"></div><div className="mini-shine"></div></div>
-      <div className="message-bubble bubble-one"><b>Quartier</b><span>Yoff</span></div>
-      <div className="message-bubble bubble-two"><b>Panne</b><span>Vidange</span></div>
-      <div className="message-bubble bubble-three"><b>Message</b><span>Prêt</span></div>
-    </div>
+      <div className="smart-card">
+        <div className="form-grid">
+          <label>Quartier<select value={area} onChange={(e) => setArea(e.target.value)}>{areas.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Marque<select value={brand} onChange={(e) => setBrand(e.target.value)}>{brands.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Panne<select value={problem} onChange={(e) => setProblem(e.target.value)}>{pains.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Precision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : elle s'allume mais ne vidange pas" /></label>
+        </div>
+        <div className="message-preview"><span>Message prepare</span><p>{message}</p></div>
+        <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-form">Envoyer sur WhatsApp</a>
+      </div>
+    </>
   );
 }
 
@@ -159,8 +177,7 @@ export default function HomePage() {
       </section>
 
       <section id="whatsapp-intelligent" className="section form-zone">
-        <div><p className="eyebrow">WhatsApp intelligent</p><h2>Un contact plus précis qu’un simple bouton.</h2><p>Préparez un message clair en quelques secondes. Le client arrive sur WhatsApp avec un besoin déjà qualifié.</p><ContactVisual /></div>
-        <SmartWhatsAppForm />
+        <SmartWhatsAppLead />
       </section>
 
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{displayAreas.map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div></section>
