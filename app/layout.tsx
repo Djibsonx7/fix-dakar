@@ -79,6 +79,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', '${gaMeasurementId}');
           `}
         </Script>
+        <Script id="conversion-click-tracking" strategy="afterInteractive">
+          {`
+            document.addEventListener('click', function (event) {
+              var target = event.target;
+              if (!target || !target.closest) return;
+
+              var link = target.closest('[data-conversion]');
+              if (!link) return;
+
+              var conversionLocation = link.getAttribute('data-conversion');
+              var href = link.getAttribute('href') || '';
+              var eventName = href.indexOf('tel:') === 0 ? 'phone_click' : 'whatsapp_click';
+
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', eventName, {
+                  conversion_location: conversionLocation,
+                  link_url: href,
+                  page_location: window.location.href,
+                  transport_type: 'beacon'
+                });
+              }
+            });
+          `}
+        </Script>
         {children}
         <script
           type="application/ld+json"
