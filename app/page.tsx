@@ -11,14 +11,15 @@ function whatsappLink(message: string) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
-function quickMessage(problem = 'machine a laver') {
-  return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour ma ${problem}. Je suis a Dakar.`;
+function quickMessage(problem?: string) {
+  const problemText = problem ? `\nProblème : ${problem}.` : '';
+  return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour une machine à laver à Dakar.${problemText}`;
 }
 
-const pains = ['Ne demarre plus', 'Fuite d eau', 'Probleme de vidange', 'Tambour bloque', 'Bruit anormal', 'Essorage impossible', 'Autre panne'];
+const pains = ['Ne démarre plus', 'Fuite d’eau', 'Problème de vidange', 'Tambour bloqué', 'Bruit anormal', 'Essorage impossible', 'Autre panne'];
 const quickPains = pains.filter((pain) => pain !== 'Autre panne');
 const brands = ['Samsung', 'LG', 'Beko', 'Whirlpool', 'Hisense', 'Roch', 'Autre'];
-const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Coeur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
+const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
 const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
@@ -56,14 +57,14 @@ function ContactVisual({ area, brand, problem, isReady }: ContactVisualProps) {
 function SmartWhatsAppLead() {
   const [area, setArea] = useState('Yoff');
   const [brand, setBrand] = useState('Samsung');
-  const [problem, setProblem] = useState('Ne demarre plus');
+  const [problem, setProblem] = useState('Ne démarre plus');
   const [details, setDetails] = useState('');
 
   const isReady = Boolean(area && brand && problem);
 
   const message = useMemo(() => {
-    const detailText = details.trim() ? `\nDetail : ${details.trim()}` : '';
-    return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour une machine a laver.\nQuartier : ${area}\nMarque : ${brand}\nProbleme : ${problem}${detailText}`;
+    const detailText = details.trim() ? `\nDétail : ${details.trim()}` : '';
+    return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour une machine à laver.\nQuartier : ${area}\nMarque : ${brand}\nProblème : ${problem}${detailText}`;
   }, [area, brand, problem, details]);
 
   return (
@@ -79,9 +80,9 @@ function SmartWhatsAppLead() {
           <label>Quartier<select value={area} onChange={(e) => setArea(e.target.value)}>{areas.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label>Marque<select value={brand} onChange={(e) => setBrand(e.target.value)}>{brands.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label>Panne<select value={problem} onChange={(e) => setProblem(e.target.value)}>{pains.map((item) => <option key={item}>{item}</option>)}</select></label>
-          <label>Precision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : elle s'allume mais ne vidange pas" /></label>
+          <label>Précision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : elle s'allume mais ne vidange pas" /></label>
         </div>
-        <div className="message-preview"><span>Message prepare</span><p>{message}</p></div>
+        <div className="message-preview"><span>Message préparé</span><p>{message}</p></div>
         <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-form">Envoyer sur WhatsApp</a>
       </div>
     </>
@@ -136,7 +137,7 @@ export default function HomePage() {
 
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Service urbain de depannage premium</p>
+          <p className="eyebrow">Service urbain de dépannage premium</p>
           <h1>Réparation machine à laver à Dakar.</h1>
           <p className="lead">Diagnostic clair, intervention rapide et assistance WhatsApp pour vos pannes de lave-linge et appareils électroménagers.</p>
           <div className="actions">
@@ -152,7 +153,7 @@ export default function HomePage() {
       </section>
 
       <section className="section grid-two">
-        <div><p className="eyebrow">Pannes frequentes</p><h2>On règle les problèmes qui bloquent votre journée.</h2></div>
+        <div><p className="eyebrow">Pannes fréquentes</p><h2>On règle les problèmes qui bloquent votre journée.</h2></div>
         <div className="chips">{quickPains.map((p) => <a className="quick-chip" href={whatsappLink(quickMessage(p))} key={p} data-conversion="whatsapp-pain"><span>{p}</span><small>WhatsApp</small><b>→</b></a>)}</div>
       </section>
 
@@ -163,7 +164,7 @@ export default function HomePage() {
       </section>
 
       <section className="section brand-section">
-        <p className="eyebrow">Marques reparees</p>
+        <p className="eyebrow">Marques réparées</p>
         <h2>Compatible avec les grandes marques de machine à laver.</h2>
         <div className="brand-grid">{brands.slice(0, 6).map((item) => <span key={item}>{item}</span>)}</div>
       </section>
@@ -182,7 +183,7 @@ export default function HomePage() {
       </section>
 
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{displayAreas.map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div></section>
-      <section className="section faq-section"><p className="eyebrow">Questions frequentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
+      <section className="section faq-section"><p className="eyebrow">Questions fréquentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
       <footer className="footer upgraded-footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div><div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-footer">{displayPhone}</a><a className="footer-contact" href="mailto:contact@fenixfuz.com">contact@fenixfuz.com</a><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div></footer>
     </main>
