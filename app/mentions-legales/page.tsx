@@ -10,7 +10,7 @@ export default function MentionsLegales() {
       <div style={{marginTop:'40px',display:'grid',gap:'18px'}}>
         <section>
           <h2>Contact</h2>
-          <p>WhatsApp / Téléphone : +221 77 798 92 38</p>
+          <p>WhatsApp / Téléphone : +221 78 820 80 80</p>
           <p>Email : contact@fenixfuz.com</p>
         </section>
 
