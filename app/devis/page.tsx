@@ -101,8 +101,9 @@ export default function QuotePage() {
             <tr><td>Main-d’œuvre réparation</td><td>{formatCurrency(labor)}</td></tr>
             <tr><td>Pièce éventuelle</td><td>{Number(parts || 0) > 0 ? formatCurrency(parts) : 'À confirmer'}</td></tr>
           </tbody>
-          <tfoot><tr><td>Total estimé</td><td>{formatCurrency(String(total))}</td></tr></tfoot>
         </table>
+
+        <div className="quote-total"><span>Total estimé</span><b>{formatCurrency(String(total))}</b></div>
 
         <section className="quote-note"><b>Note</b><p>{notes || 'Ce devis est basé sur les informations fournies avant intervention. Le montant final peut varier si une pièce ou une panne supplémentaire est confirmée sur place. Toute réparation importante est validée avec le client avant exécution.'}</p></section>
 
