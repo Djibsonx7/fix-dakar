@@ -21,7 +21,6 @@ function today() {
 
 export default function QuotePage() {
   const [client, setClient] = useState('');
-  const [clientPhone, setClientPhone] = useState('');
   const [area, setArea] = useState('');
   const [appliance, setAppliance] = useState('Machine à laver');
   const [brand, setBrand] = useState('');
@@ -60,16 +59,15 @@ export default function QuotePage() {
 
         <div className="quote-form-grid">
           <label>Client<input value={client} onChange={(e) => setClient(e.target.value)} placeholder="Nom du client" /></label>
-          <label>Téléphone<input value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} placeholder="Numéro client" /></label>
           <label>Quartier<input value={area} onChange={(e) => setArea(e.target.value)} placeholder="Ex : Yoff" /></label>
           <label>Appareil<select value={appliance} onChange={(e) => setAppliance(e.target.value)}>{appliances.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label>Marque<input value={brand} onChange={(e) => setBrand(e.target.value)} placeholder="Samsung, LG..." /></label>
           <label>Service<select value={service} onChange={(e) => setService(e.target.value)}>{services.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Statut paiement<select value={status} onChange={(e) => setStatus(e.target.value)}>{paymentStatus.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label className="wide-field">Problème signalé<textarea value={problem} onChange={(e) => setProblem(e.target.value)} placeholder="Décrire brièvement la panne" /></label>
           <label>Diagnostic<input type="number" value={diagnostic} onChange={(e) => setDiagnostic(e.target.value)} /></label>
           <label>Main-d’œuvre<input type="number" value={labor} onChange={(e) => setLabor(e.target.value)} /></label>
           <label>Pièce<input type="number" value={parts} onChange={(e) => setParts(e.target.value)} /></label>
-          <label>Statut paiement<select value={status} onChange={(e) => setStatus(e.target.value)}>{paymentStatus.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label className="wide-field">Note<textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Ex : montant final sous réserve de confirmation sur place" /></label>
         </div>
 
@@ -88,7 +86,7 @@ export default function QuotePage() {
         </header>
 
         <div className="quote-info-grid">
-          <article><span>Client</span><b>{client || '—'}</b><small>{clientPhone || 'Téléphone non renseigné'}</small></article>
+          <article><span>Client</span><b>{client || '—'}</b><small>Dossier client</small></article>
           <article><span>Quartier</span><b>{area || '—'}</b><small>Dakar</small></article>
           <article><span>Appareil</span><b>{appliance}</b><small>{brand || 'Marque à confirmer'}</small></article>
           <article><span>Service</span><b>{service}</b><small>{status}</small></article>
