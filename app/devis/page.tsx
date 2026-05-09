@@ -7,7 +7,7 @@ const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
 
 const appliances = ['Machine à laver', 'Micro-ondes', 'Frigo', 'Congélateur', 'Chauffe-eau', 'Autre appareil'];
-const services = ['Diagnostic', 'Déplacement + diagnostic', 'Réparation', 'Remplacement de pièce', 'Entretien', 'Autre service'];
+const services = ['Diagnostic', 'Réparation', 'Remplacement de pièce', 'Entretien', 'Autre service'];
 const paymentStatus = ['À confirmer', 'En attente', 'Acompte reçu', 'Payé'];
 
 function formatCurrency(value: string) {
@@ -27,11 +27,9 @@ export default function QuotePage() {
   const [brand, setBrand] = useState('');
   const [service, setService] = useState('Diagnostic');
   const [problem, setProblem] = useState('');
-  const [travel, setTravel] = useState('0');
   const [diagnostic, setDiagnostic] = useState('0');
   const [labor, setLabor] = useState('0');
   const [parts, setParts] = useState('0');
-  const [discount, setDiscount] = useState('0');
   const [status, setStatus] = useState('À confirmer');
   const [notes, setNotes] = useState('');
 
@@ -42,9 +40,9 @@ export default function QuotePage() {
   }, []);
 
   const total = useMemo(() => {
-    const sum = Number(travel || 0) + Number(diagnostic || 0) + Number(labor || 0) + Number(parts || 0) - Number(discount || 0);
+    const sum = Number(diagnostic || 0) + Number(labor || 0) + Number(parts || 0);
     return Math.max(0, Number.isFinite(sum) ? sum : 0);
-  }, [travel, diagnostic, labor, parts, discount]);
+  }, [diagnostic, labor, parts]);
 
   const whatsappText = `Bonjour, voici votre devis FIX Dakar ${quoteNumber} pour ${appliance}. Total estimé : ${formatCurrency(String(total))}. Merci de vérifier les détails avant confirmation.`;
 
@@ -56,7 +54,7 @@ export default function QuotePage() {
             <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
             <div className="brand-text"><strong>Devis digital FIX</strong><small>Générateur interne</small></div>
           </div>
-          <button className="primary" type="button" onClick={() => window.print()}>Télécharger PDF</button>
+          <button className="primary quote-download-button" type="button" onClick={() => window.print()}>Télécharger PDF</button>
         </div>
 
         <div className="quote-form-grid">
@@ -67,11 +65,9 @@ export default function QuotePage() {
           <label>Marque<input value={brand} onChange={(e) => setBrand(e.target.value)} placeholder="Samsung, LG..." /></label>
           <label>Service<select value={service} onChange={(e) => setService(e.target.value)}>{services.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label className="wide-field">Problème signalé<textarea value={problem} onChange={(e) => setProblem(e.target.value)} placeholder="Décrire brièvement la panne" /></label>
-          <label>Déplacement<input type="number" value={travel} onChange={(e) => setTravel(e.target.value)} /></label>
           <label>Diagnostic<input type="number" value={diagnostic} onChange={(e) => setDiagnostic(e.target.value)} /></label>
           <label>Main-d’œuvre<input type="number" value={labor} onChange={(e) => setLabor(e.target.value)} /></label>
           <label>Pièce<input type="number" value={parts} onChange={(e) => setParts(e.target.value)} /></label>
-          <label>Remise<input type="number" value={discount} onChange={(e) => setDiscount(e.target.value)} /></label>
           <label>Statut paiement<select value={status} onChange={(e) => setStatus(e.target.value)}>{paymentStatus.map((item) => <option key={item}>{item}</option>)}</select></label>
           <label className="wide-field">Note<textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Ex : montant final sous réserve de confirmation sur place" /></label>
         </div>
@@ -101,11 +97,9 @@ export default function QuotePage() {
 
         <table className="quote-table">
           <tbody>
-            <tr><td>Déplacement technicien</td><td>{formatCurrency(travel)}</td></tr>
             <tr><td>Diagnostic</td><td>{formatCurrency(diagnostic)}</td></tr>
             <tr><td>Main-d’œuvre réparation</td><td>{formatCurrency(labor)}</td></tr>
             <tr><td>Pièce éventuelle</td><td>{Number(parts || 0) > 0 ? formatCurrency(parts) : 'À confirmer'}</td></tr>
-            {Number(discount || 0) > 0 && <tr><td>Remise</td><td>- {formatCurrency(discount)}</td></tr>}
           </tbody>
           <tfoot><tr><td>Total estimé</td><td>{formatCurrency(String(total))}</td></tr></tfoot>
         </table>
