@@ -16,11 +16,21 @@ function quickMessage(problem?: string) {
   return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour une machine à laver à Dakar.${problemText}`;
 }
 
+function applianceMessage(appliance: string) {
+  return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un appareil électroménager.\nAppareil : ${appliance}\nQuartier :\nMarque :\nProblème :`;
+}
+
 const pains = ['Ne démarre plus', 'Fuite d’eau', 'Problème de vidange', 'Tambour bloqué', 'Bruit anormal', 'Essorage impossible', 'Autre panne'];
 const quickPains = pains.filter((pain) => pain !== 'Autre panne');
 const brands = ['Samsung', 'LG', 'Beko', 'Whirlpool', 'Hisense', 'Roch', 'Autre'];
 const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
 const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
+const appliances = [
+  { name: 'Micro-ondes', detail: 'Ne chauffe plus · Ne démarre plus' },
+  { name: 'Frigo', detail: 'Problème de froid · Bruit anormal' },
+  { name: 'Réfrigérateur', detail: 'Panne soudaine · Fuite' },
+  { name: 'Congélateur', detail: 'Perte de froid · Givrage' },
+];
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
   { status: 'Panne qualifiée', title: 'Fuite d’eau signalée', meta: 'Ouakam • Diagnostic' },
@@ -161,6 +171,22 @@ export default function HomePage() {
         <article><h3>01. Message WhatsApp</h3><p>Envoyez le quartier, la marque et le symptôme. Le message est pré-rempli pour aller vite.</p></article>
         <article><h3>02. Diagnostic clair</h3><p>On qualifie la panne avant intervention pour éviter les déplacements inutiles.</p></article>
         <article><h3>03. Technicien fiable</h3><p>Un professionnel disponible intervient selon votre zone à Dakar.</p></article>
+      </section>
+
+      <section className="section appliances-section">
+        <div className="appliance-heading">
+          <p className="eyebrow">Autres appareils pris en charge</p>
+          <h2>Électroménager essentiel à Dakar.</h2>
+        </div>
+        <div className="appliance-grid">
+          {appliances.map((item) => (
+            <a className="appliance-card" href={whatsappLink(applianceMessage(item.name))} key={item.name} data-conversion="whatsapp-appliance">
+              <span>{item.name}</span>
+              <small>{item.detail}</small>
+              <b>WhatsApp →</b>
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className="section brand-section">
