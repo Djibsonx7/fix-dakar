@@ -28,8 +28,8 @@ const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const appliances = [
   { name: 'Micro-ondes', detail: 'Ne chauffe plus · Ne démarre plus' },
   { name: 'Frigo', detail: 'Problème de froid · Bruit anormal' },
-  { name: 'Réfrigérateur', detail: 'Panne soudaine · Fuite' },
   { name: 'Congélateur', detail: 'Perte de froid · Givrage' },
+  { name: 'Chauffe-eau', detail: 'Ne chauffe plus · Panne soudaine' },
 ];
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
@@ -42,7 +42,7 @@ const faqs = [
   ['Intervenez-vous à domicile ?', 'Oui, l’intervention peut se faire à domicile selon votre quartier et la disponibilité du technicien.'],
   ['Puis-je envoyer une photo ou une vidéo sur WhatsApp ?', 'Oui. C’est même recommandé pour comprendre rapidement le problème avant le déplacement.'],
   ['Réparez-vous Samsung, LG, Beko ou Whirlpool ?', 'Oui, FIX peut orienter vers un technicien pour les grandes marques de machines à laver et lave-linge.'],
-  ['Réparez-vous aussi d’autres appareils électroménagers ?', 'Oui. En plus des machines à laver, FIX Dakar peut orienter votre demande pour certains appareils électroménagers essentiels comme les micro-ondes, frigos, réfrigérateurs et congélateurs. Envoyez la marque, le quartier et le problème constaté sur WhatsApp pour une première qualification.'],
+  ['Réparez-vous aussi d’autres appareils électroménagers ?', 'Oui. En plus des machines à laver, FIX Dakar peut orienter votre demande pour certains appareils électroménagers essentiels comme les micro-ondes, frigos/réfrigérateurs, congélateurs et chauffe-eau. Envoyez la marque, le quartier et le problème constaté sur WhatsApp pour une première qualification.'],
   ['Quels quartiers de Dakar couvrez-vous ?', 'FIX intervient ou oriente vers un technicien dans plusieurs zones comme Yoff, Ouakam, Almadies, Hann, Maristes, Grand Yoff et quartiers proches.'],
 ];
 
