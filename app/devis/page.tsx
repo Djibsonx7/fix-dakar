@@ -44,7 +44,7 @@ export default function QuotePage() {
     return Math.max(0, Number.isFinite(sum) ? sum : 0);
   }, [diagnostic, labor, parts]);
 
-  const whatsappText = `Bonjour, voici votre devis FIX Dakar ${quoteNumber} pour ${appliance}. Total estimé : ${formatCurrency(String(total))}. Merci de vérifier les détails avant confirmation.`;
+  const whatsappText = `Bonjour, voici votre fiche d’intervention FIX Dakar ${quoteNumber} pour ${appliance}. Total estimé : ${formatCurrency(String(total))}. Merci de vérifier les détails avant confirmation.`;
 
   return (
     <main className="quote-page">
@@ -52,7 +52,7 @@ export default function QuotePage() {
         <div className="quote-form-header">
           <div className="brand brand-with-logo">
             <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
-            <div className="brand-text"><strong>Devis digital FIX</strong><small>Générateur interne</small></div>
+            <div className="brand-text"><strong>Fiche d’intervention FIX</strong><small>Générateur interne</small></div>
           </div>
           <button className="primary quote-download-button" type="button" onClick={() => window.print()}>Télécharger PDF</button>
         </div>
@@ -80,7 +80,7 @@ export default function QuotePage() {
         <header className="quote-doc-header">
           <div className="quote-logo-row">
             <Image src="/assets/fix-logo.png" alt="FIX Dakar" width={72} height={72} priority />
-            <div><h1>FIX Dépannage Dakar</h1><p>Devis d’intervention</p></div>
+            <div><h1>FIX Dépannage Dakar</h1><p>Fiche d’intervention</p></div>
           </div>
           <div className="quote-meta"><b>{quoteNumber}</b><span>{today()}</span></div>
         </header>
@@ -104,7 +104,7 @@ export default function QuotePage() {
 
         <div className="quote-total"><span>Total estimé</span><b>{formatCurrency(String(total))}</b></div>
 
-        <section className="quote-note"><b>Note</b><p>{notes || 'Ce devis est basé sur les informations fournies avant intervention. Le montant final peut varier si une pièce ou une panne supplémentaire est confirmée sur place. Toute réparation importante est validée avec le client avant exécution.'}</p></section>
+        <section className="quote-note"><b>Note</b><p>{notes || 'Cette fiche d’intervention est basée sur les informations fournies avant intervention. Le montant final peut varier si une pièce ou une panne supplémentaire est confirmée sur place. Toute réparation importante est validée avec le client avant exécution.'}</p></section>
 
         <footer className="quote-doc-footer"><span>{displayPhone}</span><span>contact@fenixfuz.com</span><span>Dakar • Intervention selon disponibilité</span></footer>
       </section>
