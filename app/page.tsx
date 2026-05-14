@@ -29,7 +29,7 @@ const appliances = [
   { name: 'Micro-ondes', detail: 'Ne chauffe plus · Ne démarre plus' },
   { name: 'Frigo', detail: 'Problème de froid · Bruit anormal', href: '/reparation-frigo-dakar' },
   { name: 'Congélateur', detail: 'Perte de froid · Givrage', href: '/reparation-frigo-dakar' },
-  { name: 'Chauffe-eau', detail: 'Ne chauffe plus · Panne soudaine' },
+  { name: 'Chauffe-eau', detail: 'Ne chauffe plus · Disjonction', href: '/reparation-chauffe-eau-dakar' },
 ];
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
