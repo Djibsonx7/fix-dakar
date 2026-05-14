@@ -27,8 +27,8 @@ const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur',
 const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const appliances = [
   { name: 'Micro-ondes', detail: 'Ne chauffe plus · Ne démarre plus' },
-  { name: 'Frigo', detail: 'Problème de froid · Bruit anormal' },
-  { name: 'Congélateur', detail: 'Perte de froid · Givrage' },
+  { name: 'Frigo', detail: 'Problème de froid · Bruit anormal', href: '/reparation-frigo-dakar' },
+  { name: 'Congélateur', detail: 'Perte de froid · Givrage', href: '/reparation-frigo-dakar' },
   { name: 'Chauffe-eau', detail: 'Ne chauffe plus · Panne soudaine' },
 ];
 const liveUpdates = [
@@ -180,13 +180,25 @@ export default function HomePage() {
           <h2>Électroménager essentiel à Dakar.</h2>
         </div>
         <div className="appliance-grid">
-          {appliances.map((item) => (
-            <a className="appliance-card" href={whatsappLink(applianceMessage(item.name))} key={item.name} data-conversion="whatsapp-appliance">
-              <span>{item.name}</span>
-              <small>{item.detail}</small>
-              <b>WhatsApp →</b>
-            </a>
-          ))}
+          {appliances.map((item) => {
+            const content = (
+              <>
+                <span>{item.name}</span>
+                <small>{item.detail}</small>
+                <b>{item.href ? 'Voir la page →' : 'WhatsApp →'}</b>
+              </>
+            );
+
+            return item.href ? (
+              <Link className="appliance-card" href={item.href} key={item.name}>
+                {content}
+              </Link>
+            ) : (
+              <a className="appliance-card" href={whatsappLink(applianceMessage(item.name))} key={item.name} data-conversion="whatsapp-appliance">
+                {content}
+              </a>
+            );
+          })}
         </div>
       </section>
 
