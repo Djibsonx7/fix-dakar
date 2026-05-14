@@ -17,6 +17,43 @@ const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const brands = ['Ariston', 'Atlantic', 'Roch', 'Beko', 'Haier', 'Hisense', 'Autre'];
 const heaterTypes = ['Chauffe-eau électrique', 'Chauffe-eau mural', 'Chauffe-eau horizontal', 'Ballon d’eau chaude'];
 const pains = ['Ne chauffe plus', 'Eau tiède', 'Disjoncte', 'Fuite d’eau', 'Résistance', 'Thermostat', 'Voyant allumé sans eau chaude'];
+const heaterServices = [
+  { title: 'Chauffe-eau électrique', text: 'Panne de résistance, thermostat ou problème de chauffe.' },
+  { title: 'Ballon d’eau chaude', text: 'Eau tiède, arrêt soudain, fuite ou voyant anormal.' },
+  { title: 'Sécurité électrique', text: 'Disjonction, court-circuit ou appareil à vérifier avant manipulation.' },
+];
+
+function HeaterVisual() {
+  return (
+    <div className="heater-visual-wrap">
+      <div className="heat-glow glow-one"></div>
+      <div className="heat-glow glow-two"></div>
+      <div className="heater">
+        <div className="heater-light"></div>
+        <div className="heater-screen"></div>
+        <div className="heater-panel"></div>
+        <div className="heater-pipe pipe-left"></div>
+        <div className="heater-pipe pipe-right"></div>
+        <div className="heater-shine"></div>
+      </div>
+      <div className="status-card heater-status heater-status-one"><b>Eau chaude</b><span>Chauffe-eau qui ne chauffe plus</span><small>Diagnostic • Dakar</small></div>
+      <div className="status-card heater-status heater-status-two"><b>Demande reçue</b><span>Type + quartier</span><small>WhatsApp préparé</small></div>
+      <div className="status-card heater-status heater-status-three"><b>Sécurité</b><span>Fuite ou disjonction</span><small>À vérifier</small></div>
+    </div>
+  );
+}
+
+function MiniHeaterPreview({ area, heaterType, problem }: { area: string; heaterType: string; problem: string }) {
+  return (
+    <div className="contact-visual heater-contact-visual" aria-label="Aperçu du message WhatsApp chauffe-eau préparé">
+      <div className="mini-heater"><div className="mini-heater-light"></div><div className="mini-heater-screen"></div><div className="mini-heater-panel"></div><div className="mini-shine"></div></div>
+      <div className="message-bubble bubble-one"><b>Quartier</b><span>{area}</span></div>
+      <div className="message-bubble bubble-two"><b>Type</b><span>{heaterType}</span></div>
+      <div className="message-bubble bubble-three"><b>Panne</b><span>{problem}</span></div>
+      <div className="message-bubble bubble-four"><b>Message</b><span>Prêt</span></div>
+    </div>
+  );
+}
 
 function SmartLead() {
   const [area, setArea] = useState('Yoff');
@@ -36,6 +73,7 @@ function SmartLead() {
         <p className="eyebrow">WhatsApp intelligent</p>
         <h2>Décrivez votre panne chauffe-eau rapidement.</h2>
         <p>Sélectionnez les informations principales pour préparer automatiquement votre message WhatsApp.</p>
+        <MiniHeaterPreview area={area} heaterType={heaterType} problem={problem} />
       </div>
 
       <div className="smart-card">
@@ -58,8 +96,8 @@ function SmartLead() {
 function FAQ() {
   const faqs = [
     ['Réparez-vous les chauffe-eaux à Dakar ?', 'Oui, FIX Dakar peut orienter votre demande vers un technicien disponible selon la panne et votre zone.'],
-    ['Pourquoi mon chauffe-eau disjoncte ?', 'Cela peut venir de la résistance, du thermostat ou d’un problème électrique nécessitant un diagnostic.'],
-    ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez une photo du chauffe-eau, la marque, le quartier et le symptôme observé.'],
+    ['Pourquoi mon chauffe-eau disjoncte ?', 'Cela peut venir de la résistance, du thermostat ou d’un problème électrique nécessitant un diagnostic. Évitez de forcer l’appareil si la coupure revient.'],
+    ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez une photo du chauffe-eau, la marque, le quartier et le symptôme observé : eau froide, eau tiède, fuite ou disjonction.'],
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -85,7 +123,7 @@ function FAQ() {
 
 export default function ChauffeEauRepairClient() {
   return (
-    <main className="site-shell service-page">
+    <main className="site-shell service-page heater-page">
       <nav className="nav">
         <Link className="brand brand-with-logo" href="/">
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
@@ -109,8 +147,8 @@ export default function ChauffeEauRepairClient() {
           <div className="trust-row"><span>Dakar</span><span>Diagnostic clair</span><span>Intervention selon disponibilité</span></div>
         </div>
 
-        <div className="hero-card service-card-visual">
-          <div className="status-card"><b>Eau chaude</b><span>Diagnostic rapide</span><small>WhatsApp • Dakar</small></div>
+        <div className="hero-card service-card-visual heater-hero-card">
+          <HeaterVisual />
         </div>
       </section>
 
@@ -136,6 +174,19 @@ export default function ChauffeEauRepairClient() {
         <SmartLead />
       </section>
 
+      <section className="section cards service-type-cards">
+        {heaterServices.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}
+      </section>
+
+      <section className="section promise-section">
+        <div><p className="eyebrow">Sécurité & diagnostic</p><h2>Avant de manipuler un chauffe-eau en panne.</h2></div>
+        <div className="promise-cards">
+          <article><b>Disjonction répétée</b><p>Évitez de réarmer plusieurs fois sans diagnostic si le chauffe-eau fait couper le courant.</p></article>
+          <article><b>Fuite visible</b><p>Envoyez une photo de la zone concernée et évitez toute manipulation risquée.</p></article>
+          <article><b>Eau froide ou tiède</b><p>La résistance, le thermostat ou l’alimentation peuvent être en cause.</p></article>
+        </div>
+      </section>
+
       <section className="section">
         <p className="eyebrow">Zones d’intervention</p>
         <h2>Intervention chauffe-eau à Dakar.</h2>
@@ -156,7 +207,7 @@ export default function ChauffeEauRepairClient() {
 
       <footer className="footer upgraded-footer">
         <div><b>FIX Dépannage Dakar</b><p>Réparation chauffe-eau, frigo et électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div>
-        <div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="phone_click">{displayPhone}</a><Link className="footer-legal" href="/">Accueil</Link></div>
+        <div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="phone_click">{displayPhone}</a><Link className="footer-legal" href="/">Accueil</Link><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div>
       </footer>
     </main>
   );
