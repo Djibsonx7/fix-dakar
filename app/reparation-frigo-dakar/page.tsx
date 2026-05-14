@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -9,16 +12,16 @@ function whatsappLink(message: string) {
 }
 
 const frigoMessage = `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un frigo à Dakar.\nQuartier :\nMarque :\nProblème : ne refroidit plus / fuite / bruit / congèle trop\nPrécision :`;
-
-const pains = [
-  'Ne refroidit plus',
-  'Froid insuffisant',
-  'Fuite d’eau',
-  'Bruit anormal',
-  'Congèle trop',
-  'Ne démarre plus',
+const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
+const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
+const brands = ['Samsung', 'LG', 'Beko', 'Hisense', 'Roch', 'Haier', 'Autre'];
+const applianceTypes = ['Frigo', 'Réfrigérateur combiné', 'Congélateur', 'Frigo vitrine'];
+const pains = ['Ne refroidit plus', 'Froid insuffisant', 'Fuite d’eau', 'Bruit anormal', 'Congèle trop', 'Trop de givre', 'Ne démarre plus'];
+const coldServices = [
+  { title: 'Frigo simple porte', text: 'Panne de froid, fuite, bruit ou arrêt soudain.' },
+  { title: 'Réfrigérateur combiné', text: 'Partie frigo ou congélateur qui ne refroidit plus correctement.' },
+  { title: 'Congélateur', text: 'Perte de froid, givre excessif ou appareil qui ne démarre plus.' },
 ];
-
 const faqs = [
   ['Réparez-vous les frigos à domicile à Dakar ?', 'Oui, FIX Dakar peut orienter votre demande vers un technicien disponible selon votre quartier et le type de panne constatée.'],
   ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez le quartier, la marque, une photo ou vidéo si possible, et le symptôme exact : plus de froid, fuite, bruit, givre ou panne électrique.'],
@@ -41,6 +44,68 @@ function FridgeVisual() {
       <div className="status-card fridge-status fridge-status-one"><b>Panne de froid</b><span>Frigo qui ne refroidit plus</span><small>Diagnostic • Dakar</small></div>
       <div className="status-card fridge-status fridge-status-two"><b>Demande reçue</b><span>Marque + quartier</span><small>WhatsApp préparé</small></div>
       <div className="status-card fridge-status fridge-status-three"><b>Intervention</b><span>Technicien disponible</span><small>Selon la zone</small></div>
+    </div>
+  );
+}
+
+function SmartFridgeLead() {
+  const [area, setArea] = useState('Yoff');
+  const [brand, setBrand] = useState('Samsung');
+  const [applianceType, setApplianceType] = useState('Réfrigérateur combiné');
+  const [problem, setProblem] = useState('Ne refroidit plus');
+  const [details, setDetails] = useState('');
+
+  const message = useMemo(() => {
+    const detailText = details.trim() ? `\nDétail : ${details.trim()}` : '';
+    return `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un frigo.\nQuartier : ${area}\nType d'appareil : ${applianceType}\nMarque : ${brand}\nProblème : ${problem}${detailText}`;
+  }, [area, applianceType, brand, problem, details]);
+
+  return (
+    <>
+      <div>
+        <p className="eyebrow">WhatsApp intelligent</p>
+        <h2>Décrivez votre panne frigo en quelques secondes.</h2>
+        <p>Sélectionnez le quartier, la marque et le symptôme. Le message WhatsApp est préparé automatiquement pour aider FIX Dakar à qualifier rapidement votre demande.</p>
+        <div className="contact-visual fridge-contact-visual" aria-label="Aperçu du message WhatsApp frigo préparé">
+          <div className="mini-fridge"><div className="mini-fridge-screen"></div><div className="mini-fridge-door top"></div><div className="mini-fridge-door bottom"></div><div className="mini-shine"></div></div>
+          <div className="message-bubble bubble-one"><b>Quartier</b><span>{area}</span></div>
+          <div className="message-bubble bubble-two"><b>Appareil</b><span>{applianceType}</span></div>
+          <div className="message-bubble bubble-three"><b>Panne</b><span>{problem}</span></div>
+          <div className="message-bubble bubble-four"><b>Message</b><span>Prêt</span></div>
+        </div>
+      </div>
+      <div className="smart-card">
+        <div className="form-grid">
+          <label>Quartier<select value={area} onChange={(e) => setArea(e.target.value)}>{areas.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Type d’appareil<select value={applianceType} onChange={(e) => setApplianceType(e.target.value)}>{applianceTypes.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Marque<select value={brand} onChange={(e) => setBrand(e.target.value)}>{brands.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Panne<select value={problem} onChange={(e) => setProblem(e.target.value)}>{pains.map((item) => <option key={item}>{item}</option>)}</select></label>
+          <label>Précision<textarea value={details} onChange={(e) => setDetails(e.target.value)} placeholder="Ex : le moteur tourne mais l'intérieur reste chaud" /></label>
+        </div>
+        <div className="message-preview"><span>Message préparé</span><p>{message}</p></div>
+        <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-frigo-form">Envoyer ma demande sur WhatsApp</a>
+      </div>
+    </>
+  );
+}
+
+function FaqAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <div className="faq-list">
+      {faqs.map(([question, answer], index) => {
+        const isOpen = openIndex === index;
+        return (
+          <article className={`faq-item ${isOpen ? 'open' : ''}`} key={question}>
+            <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)}>
+              <span>{question}</span>
+              <strong>{isOpen ? '−' : '+'}</strong>
+            </button>
+            <div className="faq-answer"><p>{answer}</p></div>
+          </article>
+        );
+      })}
     </div>
   );
 }
@@ -71,7 +136,7 @@ export default function FrigoRepairPage() {
           <h1>Réparation frigo à Dakar.</h1>
           <p className="lead">Frigo qui ne refroidit plus, fuite, bruit anormal ou congélateur en panne ? Envoyez les détails sur WhatsApp pour une première qualification rapide.</p>
           <div className="actions">
-            <a className="primary" href={whatsappLink(frigoMessage)} data-conversion="whatsapp-frigo-hero">Décrire ma panne frigo</a>
+            <a className="primary" href="#whatsapp-frigo-intelligent">Décrire ma panne frigo</a>
             <a className="secondary" href={`tel:+${phone}`} data-conversion="call-frigo-hero">Appeler maintenant</a>
           </div>
           <div className="trust-row"><span>Dakar</span><span>Diagnostic clair</span><span>Selon disponibilité</span></div>
@@ -98,6 +163,14 @@ export default function FrigoRepairPage() {
         <article><h3>03. Intervention selon zone</h3><p>Un technicien peut être orienté selon disponibilité et type de réparation.</p></article>
       </section>
 
+      <section id="whatsapp-frigo-intelligent" className="section form-zone">
+        <SmartFridgeLead />
+      </section>
+
+      <section className="section cards service-type-cards">
+        {coldServices.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}
+      </section>
+
       <section className="section promise-section">
         <div><p className="eyebrow">Avant déplacement</p><h2>Envoyez une photo ou vidéo pour mieux qualifier.</h2></div>
         <div className="promise-cards">
@@ -107,17 +180,16 @@ export default function FrigoRepairPage() {
         </div>
       </section>
 
+      <section className="section">
+        <p className="eyebrow">Zones d’intervention</p>
+        <h2>Réparation frigo à Dakar et quartiers proches.</h2>
+        <div className="areas">{displayAreas.map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div>
+      </section>
+
       <section className="section faq-section">
         <p className="eyebrow">Questions fréquentes</p>
         <h2>Avant de contacter FIX pour un frigo.</h2>
-        <div className="faq-list">
-          {faqs.map(([question, answer]) => (
-            <article className="faq-item open" key={question}>
-              <button type="button"><span>{question}</span><strong>+</strong></button>
-              <div className="faq-answer"><p>{answer}</p></div>
-            </article>
-          ))}
-        </div>
+        <FaqAccordion />
       </section>
 
       <section className="final-cta">
@@ -128,7 +200,7 @@ export default function FrigoRepairPage() {
 
       <footer className="footer upgraded-footer">
         <div><b>FIX Dépannage Dakar</b><p>Réparation frigo, machine à laver et électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div>
-        <div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-frigo-footer">{displayPhone}</a><Link className="footer-legal" href="/">Accueil</Link></div>
+        <div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-frigo-footer">{displayPhone}</a><Link className="footer-legal" href="/">Accueil</Link><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div>
       </footer>
     </main>
   );
