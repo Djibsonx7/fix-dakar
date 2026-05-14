@@ -1,22 +1,38 @@
 import type { MetadataRoute } from 'next';
 
+const siteUrl = 'https://fix.fenixfuz.com';
+
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+
   return [
     {
-      url: 'https://fix.fenixfuz.com',
-      lastModified: new Date(),
+      url: siteUrl,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://fix.fenixfuz.com/mentions-legales',
-      lastModified: new Date(),
+      url: `${siteUrl}/reparation-frigo-dakar`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/reparation-chauffe-eau-dakar`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/mentions-legales`,
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.5,
     },
     {
-      url: 'https://fix.fenixfuz.com/confidentialite',
-      lastModified: new Date(),
+      url: `${siteUrl}/confidentialite`,
+      lastModified,
       changeFrequency: 'monthly',
       priority: 0.5,
     },
