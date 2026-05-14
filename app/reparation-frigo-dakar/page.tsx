@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 const phone = '221788208080';
@@ -25,6 +26,25 @@ const faqs = [
   ['Intervenez-vous sur réfrigérateur et congélateur ?', 'Oui, la demande peut concerner un frigo, un réfrigérateur, un combiné ou un congélateur selon disponibilité technique.'],
 ];
 
+function FridgeVisual() {
+  return (
+    <div className="fridge-visual-wrap">
+      <div className="cold-orbit orbit-one"></div>
+      <div className="cold-orbit orbit-two"></div>
+      <div className="fridge">
+        <div className="fridge-screen"></div>
+        <div className="fridge-door top-door"><span className="fridge-handle"></span></div>
+        <div className="fridge-door bottom-door"><span className="fridge-handle"></span></div>
+        <div className="fridge-vent"></div>
+        <div className="fridge-shine"></div>
+      </div>
+      <div className="status-card fridge-status fridge-status-one"><b>Panne de froid</b><span>Frigo qui ne refroidit plus</span><small>Diagnostic • Dakar</small></div>
+      <div className="status-card fridge-status fridge-status-two"><b>Demande reçue</b><span>Marque + quartier</span><small>WhatsApp préparé</small></div>
+      <div className="status-card fridge-status fridge-status-three"><b>Intervention</b><span>Technicien disponible</span><small>Selon la zone</small></div>
+    </div>
+  );
+}
+
 export const metadata = {
   title: 'Réparation frigo Dakar | Dépannage réfrigérateur - FIX Dakar',
   description:
@@ -39,7 +59,7 @@ export default function FrigoRepairPage() {
     <main className="site-shell service-page">
       <nav className="nav">
         <Link className="brand brand-with-logo" href="/">
-          <span className="logo-mark">FIX</span>
+          <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Frigo • Réfrigérateur</small></div>
         </Link>
         <a className="nav-cta" href={whatsappLink(frigoMessage)} data-conversion="whatsapp-frigo-header">WhatsApp</a>
@@ -56,10 +76,8 @@ export default function FrigoRepairPage() {
           </div>
           <div className="trust-row"><span>Dakar</span><span>Diagnostic clair</span><span>Selon disponibilité</span></div>
         </div>
-        <div className="hero-card service-card-visual">
-          <div className="status-card"><b>Demande frigo</b><span>Panne de froid</span><small>WhatsApp • Dakar</small></div>
-          <div className="status-card"><b>Qualification</b><span>Marque + quartier</span><small>Photo ou vidéo utile</small></div>
-          <div className="status-card"><b>Intervention</b><span>Technicien disponible</span><small>Après diagnostic</small></div>
+        <div className="hero-card service-card-visual fridge-hero-card">
+          <FridgeVisual />
         </div>
       </section>
 
