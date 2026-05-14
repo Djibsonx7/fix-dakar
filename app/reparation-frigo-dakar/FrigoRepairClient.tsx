@@ -11,6 +11,7 @@ function whatsappLink(message: string) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
+const simpleFrigoMessage = `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un frigo à Dakar.`;
 const frigoMessage = `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un frigo à Dakar.\nQuartier :\nMarque :\nProblème : ne refroidit plus / fuite / bruit / congèle trop\nPrécision :`;
 const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
 const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
@@ -90,7 +91,7 @@ function SmartFridgeLead() {
 }
 
 function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="faq-list">
@@ -118,7 +119,7 @@ export default function FrigoRepairClient() {
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Frigo • Réfrigérateur</small></div>
         </Link>
-        <a className="nav-cta" href={whatsappLink(frigoMessage)} data-conversion="whatsapp-frigo-header">WhatsApp</a>
+        <a className="nav-cta" href={whatsappLink(simpleFrigoMessage)} data-conversion="whatsapp-frigo-header">WhatsApp</a>
       </nav>
 
       <section className="hero service-hero">
@@ -141,7 +142,7 @@ export default function FrigoRepairClient() {
         <div><p className="eyebrow">Pannes fréquentes</p><h2>Les problèmes de frigo à vérifier rapidement.</h2></div>
         <div className="chips">
           {pains.map((pain) => (
-            <a className="quick-chip" href={whatsappLink(`${frigoMessage}\nPanne sélectionnée : ${pain}`)} key={pain} data-conversion="whatsapp-frigo-pain">
+            <a className="quick-chip" href={whatsappLink(`${simpleFrigoMessage}\nProblème : ${pain}.`)} key={pain} data-conversion="whatsapp-frigo-pain">
               <span>{pain}</span><small>WhatsApp</small><b>→</b>
             </a>
           ))}
@@ -186,7 +187,7 @@ export default function FrigoRepairClient() {
       <section className="final-cta">
         <h2>Besoin d’un dépannage frigo à Dakar ?</h2>
         <p>Envoyez le quartier, la marque et le problème constaté sur WhatsApp.</p>
-        <a className="primary" href={whatsappLink(frigoMessage)} data-conversion="whatsapp-frigo-final">Contacter FIX</a>
+        <a className="primary" href={whatsappLink(simpleFrigoMessage)} data-conversion="whatsapp-frigo-final">Contacter FIX</a>
       </section>
 
       <footer className="footer upgraded-footer">
