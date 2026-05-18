@@ -34,6 +34,47 @@ function ClimateVisual() {
   );
 }
 
+function MiniClimatePreview({ area, climateType, problem }: { area: string; climateType: string; problem: string }) {
+  return (
+    <div className="contact-visual heater-contact-visual" aria-label="Aperçu du message WhatsApp climatiseur préparé">
+      <div className="mini-heater"><div className="mini-heater-light"></div><div className="mini-heater-screen"></div><div className="mini-heater-panel"></div><div className="mini-shine"></div></div>
+      <div className="message-bubble bubble-one"><b>Quartier</b><span>{area}</span></div>
+      <div className="message-bubble bubble-two"><b>Type</b><span>{climateType}</span></div>
+      <div className="message-bubble bubble-three"><b>Panne</b><span>{problem}</span></div>
+      <div className="message-bubble bubble-four"><b>Message</b><span>Prêt</span></div>
+    </div>
+  );
+}
+
+function FAQ() {
+  const faqs = [
+    ['Réparez-vous les climatiseurs à Dakar ?', 'Oui, FIX Dakar peut orienter votre demande vers un technicien disponible selon votre quartier, le type de climatiseur et la panne constatée.'],
+    ['Pourquoi ma clim ne refroidit plus ?', 'Cela peut venir d’un manque d’entretien, d’un filtre encrassé, d’un problème de gaz, du ventilateur ou d’un composant interne. Envoyez le symptôme sur WhatsApp pour une première qualification.'],
+    ['Faites-vous aussi l’entretien climatiseur ?', 'Oui, les demandes d’entretien et de nettoyage climatiseur peuvent être qualifiées via WhatsApp, notamment si la clim sent mauvais, refroidit moins ou fait du bruit.'],
+    ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez le quartier, la marque, le type de climatiseur et une photo ou courte vidéo si possible. Cela aide à comprendre rapidement la panne avant intervention.'],
+  ];
+
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="faq-list">
+      {faqs.map(([question, answer], index) => {
+        const isOpen = openIndex === index;
+
+        return (
+          <article className={`faq-item ${isOpen ? 'open' : ''}`} key={question}>
+            <button type="button" onClick={() => setOpenIndex(isOpen ? null : index)}>
+              <span>{question}</span>
+              <strong>{isOpen ? '−' : '+'}</strong>
+            </button>
+            <div className="faq-answer"><p>{answer}</p></div>
+          </article>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ClimatiseurRepairClient() {
   const [area, setArea] = useState('Yoff');
   const [brand, setBrand] = useState('Samsung');
@@ -99,6 +140,7 @@ export default function ClimatiseurRepairClient() {
           <p className="eyebrow">WhatsApp intelligent</p>
           <h2>Décrivez votre panne climatiseur rapidement.</h2>
           <p>Préparez automatiquement votre message WhatsApp avant intervention.</p>
+          <MiniClimatePreview area={area} climateType={climateType} problem={problem} />
         </div>
 
         <div className="smart-card">
@@ -120,6 +162,12 @@ export default function ClimatiseurRepairClient() {
         <p className="eyebrow">Zones d’intervention</p>
         <h2>Intervention climatiseur à Dakar.</h2>
         <div className="areas">{areas.filter((a) => a !== 'Autre quartier à Dakar').map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div>
+      </section>
+
+      <section className="section faq-section">
+        <p className="eyebrow">Questions fréquentes</p>
+        <h2>Avant de contacter FIX pour un climatiseur.</h2>
+        <FAQ />
       </section>
 
       <section className="final-cta">
