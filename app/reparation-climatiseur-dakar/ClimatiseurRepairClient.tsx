@@ -95,7 +95,7 @@ export default function ClimatiseurRepairClient() {
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Climatiseur • Climatisation</small></div>
         </Link>
 
-        <a className="nav-cta" href={whatsappLink(simpleMessage)}>WhatsApp</a>
+        <a className="nav-cta" href={whatsappLink(simpleMessage)} data-conversion="whatsapp-clim-header">WhatsApp</a>
       </nav>
 
       <section className="hero service-hero">
@@ -106,7 +106,7 @@ export default function ClimatiseurRepairClient() {
 
           <div className="actions">
             <a className="primary" href="#whatsapp-clim">Décrire ma panne</a>
-            <a className="secondary" href={`tel:+${phone}`}>Appeler maintenant</a>
+            <a className="secondary" href={`tel:+${phone}`} data-conversion="phone-clim-hero">Appeler maintenant</a>
           </div>
 
           <div className="trust-row"><span>Dakar</span><span>Air frais</span><span>Intervention selon disponibilité</span></div>
@@ -122,7 +122,7 @@ export default function ClimatiseurRepairClient() {
 
         <div className="chips">
           {pains.map((pain) => (
-            <a className="quick-chip" href={whatsappLink(`${simpleMessage}\nProblème : ${pain}`)} key={pain}>
+            <a className="quick-chip" href={whatsappLink(`${simpleMessage}\nProblème : ${pain}`)} key={pain} data-conversion="whatsapp-clim-pain">
               <span>{pain}</span><small>WhatsApp</small><b>→</b>
             </a>
           ))}
@@ -154,7 +154,7 @@ export default function ClimatiseurRepairClient() {
 
           <div className="message-preview"><span>Message préparé</span><p>{message}</p></div>
 
-          <a className="primary wide" href={whatsappLink(message)}>Envoyer ma demande sur WhatsApp</a>
+          <a className="primary wide" href={whatsappLink(message)} data-conversion="whatsapp-clim-form">Envoyer ma demande sur WhatsApp</a>
         </div>
       </section>
 
@@ -173,7 +173,7 @@ export default function ClimatiseurRepairClient() {
       <section className="final-cta">
         <h2>Besoin d’un dépannage climatiseur à Dakar ?</h2>
         <p>Envoyez votre quartier et le problème constaté sur WhatsApp.</p>
-        <a className="primary" href={whatsappLink(simpleMessage)}>Contacter FIX</a>
+        <a className="primary" href={whatsappLink(simpleMessage)} data-conversion="whatsapp-clim-final">Contacter FIX</a>
       </section>
     </main>
   );
