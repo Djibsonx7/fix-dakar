@@ -33,7 +33,9 @@ export default function FacturePage() {
   const [intervention, setIntervention] = useState('');
   const [diagnostic, setDiagnostic] = useState(0);
   const [labor, setLabor] = useState(0);
-  const [parts, setParts] = useState(0);
+  const [partLines, setPartLines] = useState<{ label: string; amount: string }[]>([
+    { label: '', amount: '' },
+  ]);
   const [payStatus, setPayStatus] = useState('Payé');
   const [payMode, setPayMode] = useState('Espèces');
   const [payDate, setPayDate] = useState(new Date().toISOString().split('T')[0]);
@@ -52,7 +54,18 @@ export default function FacturePage() {
     setInvoiceNumber(`FIX-${year}-${String(counter).padStart(4, '0')}`);
   }, []);
 
-  const total = diagnostic + labor + parts;
+  function addPartLine() {
+    if (partLines.length < 6) setPartLines((prev) => [...prev, { label: '', amount: '' }]);
+  }
+  function removePartLine(index: number) {
+    setPartLines((prev) => prev.filter((_, i) => i !== index));
+  }
+  function updatePartLine(index: number, field: 'label' | 'amount', value: string) {
+    setPartLines((prev) => prev.map((line, i) => i === index ? { ...line, [field]: value } : line));
+  }
+
+  const partsTotal = partLines.reduce((sum, line) => sum + (parseFloat(line.amount) || 0), 0);
+  const total = diagnostic + labor + partsTotal;
 
   const autoIntervention = `Diagnostic de l'appareil ${appliance}${brand ? ' ' + brand : ''}, réparation des éléments défectueux et remise en service après test de fonctionnement.`;
   const interventionText = intervention.trim() !== '' ? intervention : autoIntervention;
@@ -63,7 +76,10 @@ export default function FacturePage() {
     const rows: { label: string; amount: number }[] = [];
     if (diagnostic > 0) rows.push({ label: 'Diagnostic', amount: diagnostic });
     if (labor > 0) rows.push({ label: "Main d'œuvre réparation", amount: labor });
-    if (parts > 0) rows.push({ label: 'Pièces de rechange', amount: parts });
+    partLines.forEach((line) => {
+      const amt = parseFloat(line.amount) || 0;
+      if (amt > 0) rows.push({ label: line.label.trim() !== '' ? line.label : 'Pièces de rechange', amount: amt });
+    });
     if (rows.length === 0) rows.push({ label: 'Diagnostic', amount: 0 });
     return rows;
   })();
@@ -190,11 +206,41 @@ export default function FacturePage() {
               <input type="number" value={labor} onChange={(e) => setLabor(Number(e.target.value) || 0)} />
             </label>
 
-            {/* 10 — Pièces */}
-            <label>
-              Pièces (FCFA)
-              <input type="number" value={parts} onChange={(e) => setParts(Number(e.target.value) || 0)} />
-            </label>
+            {/* 10 — Pièces de rechange (dynamique) */}
+            <div className="wide-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span style={{ fontSize: '14px', color: 'rgba(255,255,255,.78)' }}>Pièces de rechange</span>
+              {partLines.map((line, i) => (
+                <div key={i} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <input
+                    value={line.label}
+                    onChange={(e) => updatePartLine(i, 'label', e.target.value)}
+                    placeholder="Ex : Compresseur, Joint porte, Gaz R600a..."
+                    style={{ flex: 2 }}
+                  />
+                  <input
+                    type="number"
+                    value={line.amount}
+                    onChange={(e) => updatePartLine(i, 'amount', e.target.value)}
+                    placeholder="0"
+                    style={{ flex: 1 }}
+                  />
+                  {partLines.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() => removePartLine(i)}
+                      style={{ background: 'rgba(239,68,68,.15)', color: '#f87171', border: 'none', borderRadius: '8px', padding: '8px 10px', cursor: 'pointer' }}
+                    >×</button>
+                  )}
+                </div>
+              ))}
+              {partLines.length < 6 && (
+                <button
+                  type="button"
+                  onClick={addPartLine}
+                  style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.08)', borderRadius: '12px', padding: '8px 14px', color: 'rgba(255,255,255,.7)', fontSize: '13px', cursor: 'pointer', width: '100%', marginTop: '6px' }}
+                >+ Ajouter une pièce</button>
+              )}
+            </div>
 
             {/* 11 — Statut paiement */}
             <label>
@@ -340,11 +386,24 @@ export default function FacturePage() {
                 )}
               </div>
               <div style={{ background: '#f8fafc', border: '0.5px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748b', marginBottom: '12px' }}>
-                  <span>Client — Signature</span>
-                  <span>FIX – Dépannage Dakar — Signature & Cachet</span>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: 0, alignItems: 'start' }}>
+                  {/* Colonne gauche — Client */}
+                  <div style={{ paddingRight: '12px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Client</div>
+                    <div style={{ height: '40px', borderBottom: '1px solid #cbd5e1', margin: '12px 16px 4px' }} />
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center' }}>Signature</div>
+                  </div>
+                  {/* Séparateur */}
+                  <div style={{ background: '#e2e8f0', width: '1px', alignSelf: 'stretch' }} />
+                  {/* Colonne droite — FIX */}
+                  <div style={{ paddingLeft: '12px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>FIX – Dépannage Dakar</div>
+                    <div style={{ height: '40px', borderBottom: '1px solid #cbd5e1', margin: '12px 16px 4px' }} />
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center' }}>Signature & Cachet</div>
+                  </div>
                 </div>
-                <div style={{ border: '1.5px solid #0d1b3e', borderRadius: '6px', padding: '8px', fontSize: '10px', fontWeight: 700, color: '#0d1b3e', textAlign: 'center' }}>
+                {/* Cachet */}
+                <div style={{ border: '1.5px solid #0d1b3e', borderRadius: '6px', padding: '8px', fontSize: '10px', fontWeight: 700, color: '#0d1b3e', textAlign: 'center', marginTop: '12px' }}>
                   FIX – DÉPANNAGE DAKAR<br />
                   Diakhate Corp SUARL<br />
                   RCCM : SN.DKR.2022.B.10533<br />
