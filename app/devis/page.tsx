@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
+import InternalGuard from '@/components/InternalGuard';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -47,6 +48,7 @@ export default function QuotePage() {
   const whatsappText = `Bonjour, voici votre fiche d’intervention FIX Dakar ${quoteNumber} pour ${appliance}. Total estimé : ${formatCurrency(String(total))}. Merci de vérifier les détails avant confirmation.`;
 
   return (
+    <InternalGuard>
     <main className="quote-page">
       <section className="quote-form-panel no-print">
         <div className="quote-form-header">
@@ -109,5 +111,6 @@ export default function QuotePage() {
         <footer className="quote-doc-footer"><span>{displayPhone}</span><span>contact@fenixfuz.com</span><span>Dakar • Intervention selon disponibilité</span></footer>
       </section>
     </main>
+    </InternalGuard>
   );
 }
