@@ -296,26 +296,27 @@ export default function FacturePage() {
           <div className="invoice-print-root" style={{ background: '#fff', color: '#111827' }}>
 
             {/* 1 — Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', paddingBottom: '20px', borderBottom: '2px solid #0d1b3e' }}>
-              <div style={{ display: 'flex', gap: '18px', alignItems: 'flex-start' }}>
-                <span className="logo-mark" style={{ background: '#fff' }}>
-                  <Image src="/assets/fix-logo.png" alt="FIX" width={72} height={72} priority />
-                </span>
-                <div>
-                  <div style={{ fontSize: '20px', fontWeight: 800, color: '#0d1b3e' }}>FIX – DÉPANNAGE DAKAR</div>
-                  <div style={{ fontSize: '11px', color: '#6b7280', fontStyle: 'italic' }}>Marque de Diakhate Corp SUARL</div>
-                  <div style={{ fontSize: '11px', color: '#6b7280', lineHeight: 1.8, marginTop: '2px' }}>
-                    RCCM : SN.DKR.2022.B.10533<br />
-                    NINEA : 009292020<br />
-                    Adresse : Hann Mariste 2, N°21 X, Dakar – Sénégal<br />
-                    Téléphone : +221 78 820 80 80<br />
-                    Email : contact@fenixfuz.com
-                  </div>
-                </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 0, paddingBottom: '20px', borderBottom: '2px solid #0d1b3e' }}>
+              {/* Logo + nom */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px', minWidth: '160px' }}>
+                <Image src="/assets/fix-logo.png" alt="FIX" width={120} height={120} priority style={{ objectFit: 'contain' }} />
+                <div style={{ fontSize: '13px', fontWeight: 800, color: '#0d1b3e', letterSpacing: '.08em', textTransform: 'uppercase' }}>DÉPANNAGE DAKAR</div>
               </div>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#0d1b3e' }}>{invoiceNumber}</div>
-                <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '4px' }}>{issueDate}</div>
+              {/* Séparateur vertical */}
+              <div style={{ width: '1px', background: '#0d1b3e', alignSelf: 'stretch', margin: '0 24px', opacity: 0.2 }} />
+              {/* Infos société */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
+                <div style={{ fontSize: '22px', fontWeight: 800, color: '#0d1b3e', marginBottom: '6px' }}>FIX – DÉPANNAGE DAKAR</div>
+                <div style={{ fontSize: '11px', color: '#6b7280', fontStyle: 'italic', marginBottom: '8px' }}>Marque de Diakhate Corp SUARL</div>
+                {[
+                  'RCCM : SN.DKR.2022.B.10533',
+                  'NINEA : 009292020',
+                  'Adresse : Hann Mariste 2, N°21 X, Dakar – Sénégal',
+                  'Téléphone : +221 78 820 80 80',
+                  'Email : contact@fenixfuz.com',
+                ].map((line) => (
+                  <div key={line} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#374151', lineHeight: 1.7 }}>{line}</div>
+                ))}
               </div>
             </div>
 
@@ -328,7 +329,7 @@ export default function FacturePage() {
             {/* 3 — Bloc client */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '20px 0' }}>
               <div style={{ background: '#f8fafc', border: '0.5px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
-                <span style={{ background: '#0d1b3e', color: '#fff', fontSize: '10px', fontWeight: 600, padding: '3px 8px', borderRadius: '4px', display: 'inline-block', marginBottom: '8px' }}>CLIENT</span>
+                <span style={{ display: 'inline-block', background: '#0d1b3e', color: '#ffffff', fontSize: '10px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: '4px', marginBottom: '10px' }}>CLIENT</span>
                 <div style={{ fontSize: '13px', lineHeight: 1.8, color: '#1e293b' }}>
                   <div style={{ fontWeight: 700 }}>{client || '—'}</div>
                   {hasOrg && org && <div>Organisation : {org}</div>}
