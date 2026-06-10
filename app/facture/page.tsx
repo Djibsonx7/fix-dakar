@@ -390,20 +390,29 @@ export default function FacturePage() {
                   {/* Colonne gauche — Client */}
                   <div style={{ paddingRight: '12px' }}>
                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Client</div>
-                    <div style={{ height: '40px', borderBottom: '1px solid #cbd5e1', margin: '12px 16px 4px' }} />
-                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center' }}>Signature</div>
+                    <div style={{ height: '48px' }} />
+                    <div style={{ borderBottom: '1.5px solid #94a3b8', margin: '0 12px' }} />
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center', marginTop: '4px' }}>Signature</div>
                   </div>
                   {/* Séparateur */}
                   <div style={{ background: '#e2e8f0', width: '1px', alignSelf: 'stretch' }} />
                   {/* Colonne droite — FIX */}
                   <div style={{ paddingLeft: '12px' }}>
                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>FIX – Dépannage Dakar</div>
-                    <div style={{ height: '40px', borderBottom: '1px solid #cbd5e1', margin: '12px 16px 4px' }} />
-                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center' }}>Signature & Cachet</div>
+                    <div style={{ height: '48px' }} />
+                    <div style={{ borderBottom: '1.5px solid #94a3b8', margin: '0 12px' }} />
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center', marginTop: '4px' }}>Signature & Cachet</div>
                   </div>
                 </div>
-                {/* Cachet */}
-                <div style={{ border: '1.5px solid #0d1b3e', borderRadius: '6px', padding: '8px', fontSize: '10px', fontWeight: 700, color: '#0d1b3e', textAlign: 'center', marginTop: '12px' }}>
+                {/* Zone cachet physique */}
+                <div style={{ marginTop: '12px', textAlign: 'center' }}>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', marginBottom: '6px' }}>Cachet</div>
+                  <div style={{ width: '90px', height: '90px', border: '1.5px dashed #cbd5e1', borderRadius: '8px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '9px', color: '#cbd5e1', textAlign: 'center', lineHeight: 1.4 }}>Apposer le<br />cachet ici</span>
+                  </div>
+                </div>
+                {/* Infos légales FIX */}
+                <div style={{ border: '1.5px solid #0d1b3e', borderRadius: '6px', padding: '8px', fontSize: '10px', fontWeight: 700, color: '#0d1b3e', textAlign: 'center', marginTop: '10px' }}>
                   FIX – DÉPANNAGE DAKAR<br />
                   Diakhate Corp SUARL<br />
                   RCCM : SN.DKR.2022.B.10533<br />
