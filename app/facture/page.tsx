@@ -300,7 +300,6 @@ export default function FacturePage() {
               {/* Logo + nom */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '6px', minWidth: '160px' }}>
                 <Image src="/assets/fix-logo.png" alt="FIX" width={120} height={120} priority style={{ objectFit: 'contain' }} />
-                <div style={{ fontSize: '13px', fontWeight: 800, color: '#0d1b3e', letterSpacing: '.08em', textTransform: 'uppercase' }}>DÉPANNAGE DAKAR</div>
               </div>
               {/* Séparateur vertical */}
               <div style={{ width: '1px', background: '#0d1b3e', alignSelf: 'stretch', margin: '0 24px', opacity: 0.2 }} />
