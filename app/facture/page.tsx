@@ -109,6 +109,12 @@ export default function FacturePage() {
           .inv-total-box strong {
             font-size: 16px !important;
           }
+          .inv-client-badge {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background: #0d1b3e !important;
+            color: #ffffff !important;
+          }
           .inv-problem-content, .inv-intervention-content {
             max-height: none !important;
             overflow: visible !important;
@@ -328,7 +334,7 @@ export default function FacturePage() {
             {/* 3 — Bloc client */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', margin: '20px 0' }}>
               <div style={{ background: '#f8fafc', border: '0.5px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
-                <span style={{ display: 'inline-block', background: '#0d1b3e', color: '#ffffff', fontSize: '10px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: '4px', marginBottom: '10px' }}>CLIENT</span>
+                <span className="inv-client-badge" style={{ display: 'inline-block', background: '#0d1b3e', color: '#ffffff', fontSize: '10px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: '4px', marginBottom: '10px' }}>CLIENT</span>
                 <div style={{ fontSize: '13px', lineHeight: 1.8, color: '#1e293b' }}>
                   <div style={{ fontWeight: 700 }}>{client || '—'}</div>
                   {hasOrg && org && <div>Organisation : {org}</div>}
