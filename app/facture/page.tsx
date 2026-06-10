@@ -386,16 +386,14 @@ export default function FacturePage() {
                 )}
               </div>
               <div style={{ background: '#f8fafc', border: '0.5px solid #e2e8f0', borderRadius: '8px', padding: '14px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: 0, alignItems: 'start' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, alignItems: 'start' }}>
                   {/* Colonne gauche — Client */}
-                  <div style={{ paddingRight: '12px' }}>
+                  <div style={{ paddingRight: '12px', borderRight: '1.5px solid #cbd5e1' }}>
                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>Client</div>
                     <div style={{ height: '48px' }} />
                     <div style={{ borderBottom: '1.5px solid #94a3b8', margin: '0 12px' }} />
                     <div style={{ fontSize: '10px', color: '#94a3b8', textAlign: 'center', marginTop: '4px' }}>Signature</div>
                   </div>
-                  {/* Séparateur */}
-                  <div style={{ background: '#e2e8f0', width: '1px', alignSelf: 'stretch' }} />
                   {/* Colonne droite — FIX */}
                   <div style={{ paddingLeft: '12px' }}>
                     <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b' }}>FIX – Dépannage Dakar</div>
@@ -405,21 +403,7 @@ export default function FacturePage() {
                   </div>
                 </div>
                 {/* Zone cachet physique */}
-                <div style={{ marginTop: '12px', textAlign: 'center' }}>
-                  <div style={{ fontSize: '10px', color: '#94a3b8', marginBottom: '6px' }}>Cachet</div>
-                  <div style={{ width: '90px', height: '90px', border: '1.5px dashed #cbd5e1', borderRadius: '8px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontSize: '9px', color: '#cbd5e1', textAlign: 'center', lineHeight: 1.4 }}>Apposer le<br />cachet ici</span>
-                  </div>
-                </div>
-                {/* Infos légales FIX */}
-                <div style={{ border: '1.5px solid #0d1b3e', borderRadius: '6px', padding: '8px', fontSize: '10px', fontWeight: 700, color: '#0d1b3e', textAlign: 'center', marginTop: '10px' }}>
-                  FIX – DÉPANNAGE DAKAR<br />
-                  Diakhate Corp SUARL<br />
-                  RCCM : SN.DKR.2022.B.10533<br />
-                  NINEA : 009292020<br />
-                  Tél. : +221 78 820 80 80<br />
-                  Hann Mariste 2, N°21 X, Dakar – Sénégal
-                </div>
+                <div style={{ width: '70px', height: '70px', border: '1.5px dashed #cbd5e1', borderRadius: '6px', margin: '8px auto 0' }} />
               </div>
             </div>
 
@@ -429,8 +413,9 @@ export default function FacturePage() {
             </p>
 
             {/* 9 — Footer */}
-            <div style={{ borderTop: '0.5px solid #e2e8f0', marginTop: '20px', paddingTop: '14px', display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ borderTop: '0.5px solid #e2e8f0', marginTop: '20px', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontWeight: 700, fontSize: '11px', color: '#0d1b3e' }}>FIX – Dépannage Dakar</span>
+              <span style={{ fontSize: '11px', color: '#94a3b8' }}>fix.fenixfuz.com</span>
               <span style={{ fontSize: '11px', color: '#94a3b8', fontStyle: 'italic' }}>Une expertise rapide, un service fiable.</span>
             </div>
 
