@@ -114,6 +114,27 @@ export default function FacturePage() {
             overflow: visible !important;
             font-size: 10px;
           }
+          .inv-total-box {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background: #0d1b3e !important;
+            color: #ffffff !important;
+          }
+          .inv-total-box span {
+            color: #ffffff !important;
+            opacity: 1 !important;
+          }
+          .inv-total-box strong {
+            color: #ffffff !important;
+          }
+          .inv-table thead tr {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background: #0d1b3e !important;
+          }
+          .inv-table thead th {
+            color: #ffffff !important;
+          }
         }
         @page {
           size: A4 portrait;
@@ -403,7 +424,7 @@ export default function FacturePage() {
                   </div>
                 </div>
                 {/* Zone cachet physique */}
-                <div style={{ width: '70px', height: '70px', border: '1.5px dashed #cbd5e1', borderRadius: '6px', margin: '8px auto 0' }} />
+                <div style={{ width: '70px', height: '70px', border: 'none', background: 'transparent', margin: '8px auto 0' }} />
               </div>
             </div>
 
