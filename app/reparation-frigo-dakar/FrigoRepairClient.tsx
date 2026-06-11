@@ -28,6 +28,8 @@ const faqs = [
   ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez le quartier, la marque, une photo ou vidéo si possible, et le symptôme exact : plus de froid, fuite, bruit, givre ou panne électrique.'],
   ['Le prix est-il fixé avant intervention ?', 'Le montant dépend de la panne et des pièces éventuelles. FIX privilégie un diagnostic clair avant toute réparation importante.'],
   ['Intervenez-vous sur réfrigérateur et congélateur ?', 'Oui, la demande peut concerner un frigo, un réfrigérateur, un combiné ou un congélateur selon disponibilité technique.'],
+  ['Pourquoi mon frigo No Frost fait-il du bruit ?', 'Un bruit anormal sur un frigo No Frost indique souvent un problème de dégivrage automatique, un ventilateur bloqué ou un compresseur en difficulté. Envoyez une courte vidéo sur WhatsApp pour aider le technicien à qualifier la panne à distance.'],
+  ['Peut-on recharger le gaz d\'un frigo à Dakar ?', 'Oui, si le frigo ne refroidit plus à cause d\'une fuite de gaz réfrigérant (R600a ou R134a), une recharge est possible. FIX peut orienter vers un technicien agréé pour ce type d\'intervention.'],
 ];
 
 function FridgeVisual() {
@@ -161,6 +163,30 @@ export default function FrigoRepairClient() {
 
       <section className="section cards service-type-cards">
         {coldServices.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}
+      </section>
+
+      <section className="section brand-section">
+        <p className="eyebrow">Marques prises en charge</p>
+        <h2>Frigos et réfrigérateurs des grandes marques réparés à Dakar.</h2>
+        <div className="brand-grid">
+          {['Samsung', 'LG', 'Beko', 'Hisense', 'Roch', 'Haier'].map((b) => (
+            <span key={b}>{b}</span>
+          ))}
+        </div>
+        <div className="promise-cards" style={{ marginTop: '32px' }}>
+          <article>
+            <b>Samsung & LG</b>
+            <p>Frigos No Frost haut de gamme très courants à Dakar. Pannes fréquentes : défaut de dégivrage, compresseur, carte électronique ou joint de porte.</p>
+          </article>
+          <article>
+            <b>Beko & Hisense</b>
+            <p>Marques populaires avec un bon rapport qualité-prix. Réparations courantes : thermostat, gaz réfrigérant R600a, fuite et moteur ventilateur.</p>
+          </article>
+          <article>
+            <b>Roch & Haier</b>
+            <p>Très répandus sur le marché sénégalais. Diagnostic possible sur pannes de froid, bruit anormal ou congélateur qui ne descend plus en température.</p>
+          </article>
+        </div>
       </section>
 
       <section className="section promise-section">
