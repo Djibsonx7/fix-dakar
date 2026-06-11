@@ -24,6 +24,7 @@ function today() {
 export default function FacturePage() {
   const [invoiceNumber, setInvoiceNumber] = useState('FIX-...');
   const [client, setClient] = useState('');
+  const [clientPhone, setClientPhone] = useState('');
   const [hasOrg, setHasOrg] = useState(false);
   const [org, setOrg] = useState('');
   const [area, setArea] = useState('');
@@ -173,7 +174,13 @@ export default function FacturePage() {
               <input value={client} onChange={(e) => setClient(e.target.value)} placeholder="Nom du client" />
             </label>
 
-            {/* 2 — Organisation */}
+            {/* 2 — Téléphone client */}
+            <label className="wide-field">
+              Téléphone client
+              <input value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} placeholder="Ex : 77 000 00 00" />
+            </label>
+
+            {/* 3 — Organisation */}
             <label className="wide-field" style={{ gap: 8 }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <input
@@ -189,13 +196,13 @@ export default function FacturePage() {
               )}
             </label>
 
-            {/* 3 — Quartier */}
+            {/* 4 — Quartier */}
             <label className="wide-field">
               Quartier / Adresse
               <input value={area} onChange={(e) => setArea(e.target.value)} placeholder="Ex : Dakar Plateau" />
             </label>
 
-            {/* 4 — Appareil */}
+            {/* 5 — Appareil */}
             <label>
               Appareil
               <select value={appliance} onChange={(e) => setAppliance(e.target.value)}>
@@ -203,37 +210,37 @@ export default function FacturePage() {
               </select>
             </label>
 
-            {/* 5 — Marque */}
+            {/* 6 — Marque */}
             <label>
               Marque
               <input value={brand} onChange={(e) => setBrand(e.target.value)} placeholder="Samsung, LG..." />
             </label>
 
-            {/* 6 — Problème */}
+            {/* 7 — Problème */}
             <label className="wide-field">
               Problème signalé
               <textarea value={problem} onChange={(e) => setProblem(e.target.value)} placeholder="Ex : Moteur non fonctionnel, dysfonctionnement No Frost..." />
             </label>
 
-            {/* 7 — Intervention */}
+            {/* 8 — Intervention */}
             <label className="wide-field">
               Intervention réalisée
               <textarea value={intervention} onChange={(e) => setIntervention(e.target.value)} placeholder="Laisser vide = texte automatique selon l'appareil" />
             </label>
 
-            {/* 8 — Diagnostic */}
+            {/* 9 — Diagnostic */}
             <label>
               Diagnostic (FCFA)
               <input type="number" value={diagnostic} onChange={(e) => setDiagnostic(Number(e.target.value) || 0)} />
             </label>
 
-            {/* 9 — Main d'œuvre */}
+            {/* 10 — Main d'œuvre */}
             <label>
               Main d'œuvre (FCFA)
               <input type="number" value={labor} onChange={(e) => setLabor(Number(e.target.value) || 0)} />
             </label>
 
-            {/* 10 — Pièces de rechange (dynamique) */}
+            {/* 11 — Pièces de rechange (dynamique) */}
             <div className="wide-field" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <span style={{ fontSize: '14px', color: 'rgba(255,255,255,.78)' }}>Pièces de rechange</span>
               {partLines.map((line, i) => (
@@ -269,7 +276,7 @@ export default function FacturePage() {
               )}
             </div>
 
-            {/* 11 — Statut paiement */}
+            {/* 12 — Statut paiement */}
             <label>
               Statut paiement
               <select value={payStatus} onChange={(e) => setPayStatus(e.target.value)}>
@@ -277,7 +284,7 @@ export default function FacturePage() {
               </select>
             </label>
 
-            {/* 12 — Mode de paiement (visible si Payé) */}
+            {/* 13 — Mode de paiement (visible si Payé) */}
             {payStatus === 'Payé' && (
               <label>
                 Mode de paiement
@@ -287,7 +294,7 @@ export default function FacturePage() {
               </label>
             )}
 
-            {/* 13 — Date de paiement (visible si Payé) */}
+            {/* 14 — Date de paiement (visible si Payé) */}
             {payStatus === 'Payé' && (
               <label>
                 Date de paiement
@@ -337,6 +344,7 @@ export default function FacturePage() {
                 <span className="inv-client-badge" style={{ display: 'inline-block', background: '#0d1b3e', color: '#ffffff', fontSize: '10px', fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', padding: '3px 10px', borderRadius: '4px', marginBottom: '10px' }}>CLIENT</span>
                 <div style={{ fontSize: '13px', lineHeight: 1.8, color: '#1e293b' }}>
                   <div style={{ fontWeight: 700 }}>{client || '—'}</div>
+                  {clientPhone.trim() && <div>Téléphone : {clientPhone}</div>}
                   {hasOrg && org && <div>Organisation : {org}</div>}
                   {area && <div>Adresse : {area}</div>}
                 </div>
@@ -434,8 +442,11 @@ export default function FacturePage() {
               </div>
             </div>
 
-            {/* 8 — Mention légale */}
-            <p style={{ fontSize: '10px', color: '#94a3b8', fontStyle: 'italic', marginTop: '12px' }}>
+            {/* 8 — Garantie / Mention légale */}
+            <p style={{ fontSize: '9px', color: '#64748b', marginTop: '12px', lineHeight: 1.5 }}>
+              Garantie : 30 jours sur la panne réparée uniquement. Ne couvre pas les nouvelles pannes, les mauvaises utilisations, les surtensions électriques ou les pièces non remplacées par FIX.
+            </p>
+            <p style={{ fontSize: '10px', color: '#94a3b8', fontStyle: 'italic', marginTop: '6px' }}>
               Cette facture atteste la réalité des prestations effectuées. Merci pour votre confiance.
             </p>
 
