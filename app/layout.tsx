@@ -10,33 +10,11 @@ export const metadata: Metadata = {
   title: 'FIX Dakar | Réparation machine à laver à Dakar',
   description:
     'FIX Dakar intervient pour la réparation de machine à laver, dépannage électroménager et assistance WhatsApp rapide à Dakar.',
-  keywords: [
-    'réparation machine à laver Dakar',
-    'dépannage machine à laver Dakar',
-    'technicien lave linge Dakar',
-    'technicien machine à laver Dakar',
-    'réparation lave-linge Dakar',
-    'FIX Dakar',
-    'réparation électroménager Dakar',
-  ],
   verification: {
     google: 'tAaWXb7_C-KS5YpIOggnimhWnZdzKFt8mFF75hw4SX8',
   },
   alternates: {
     canonical: '/',
-  },
-  openGraph: {
-    title: 'FIX Dakar | Réparation machine à laver à Dakar',
-    description: 'Service moderne de dépannage machine à laver à Dakar. Assistance WhatsApp rapide.',
-    url: siteUrl,
-    siteName: 'FIX Dakar',
-    type: 'website',
-    locale: 'fr_SN',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'FIX Dakar | Réparation machine à laver à Dakar',
-    description: 'Diagnostic clair, intervention rapide et assistance WhatsApp pour vos pannes de lave-linge à Dakar.',
   },
 };
 
