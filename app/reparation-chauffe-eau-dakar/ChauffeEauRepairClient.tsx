@@ -15,7 +15,14 @@ const simpleMessage = `Bonjour FIX Dakar, j'ai besoin d'une intervention pour un
 const areas = ['Ouakam', 'Almadies', 'Yoff', 'Hann', 'Maristes', 'Sacré-Cœur', 'Grand Yoff', 'Point E', 'Autre quartier à Dakar'];
 const displayAreas = areas.filter((area) => area !== 'Autre quartier à Dakar');
 const brands = ['Ariston', 'Atlantic', 'Roch', 'Beko', 'Haier', 'Hisense', 'Autre'];
-const heaterTypes = ['Chauffe-eau électrique', 'Chauffe-eau mural', 'Chauffe-eau horizontal', 'Ballon d’eau chaude'];
+const heaterTypes = [
+  'Chauffe-eau électrique',
+  'Chauffe-eau mural',
+  'Chauffe-eau horizontal',
+  'Ballon d’eau chaude',
+  'Chauffe-eau à accumulation',
+  'Chauffe-eau instantané',
+];
 const pains = ['Ne chauffe plus', 'Eau tiède', 'Disjoncte', 'Fuite d’eau', 'Résistance', 'Thermostat', 'Voyant allumé sans eau chaude'];
 const heaterServices = [
   { title: 'Chauffe-eau électrique', text: 'Panne de résistance, thermostat ou problème de chauffe.' },
@@ -96,8 +103,11 @@ function SmartLead() {
 function FAQ() {
   const faqs = [
     ['Réparez-vous les chauffe-eaux à Dakar ?', 'Oui, FIX Dakar peut orienter votre demande vers un technicien disponible selon la panne et votre zone.'],
-    ['Pourquoi mon chauffe-eau disjoncte ?', 'Cela peut venir de la résistance, du thermostat ou d’un problème électrique nécessitant un diagnostic. Évitez de forcer l’appareil si la coupure revient.'],
+    ['Pourquoi mon chauffe-eau disjoncte ?', 'Cela peut venir de la résistance, du thermostat ou d\’un problème électrique nécessitant un diagnostic. Évitez de forcer l\’appareil si la coupure revient.'],
     ['Que dois-je envoyer sur WhatsApp ?', 'Envoyez une photo du chauffe-eau, la marque, le quartier et le symptôme observé : eau froide, eau tiède, fuite ou disjonction.'],
+    ['Combien coûte la réparation d\’un chauffe-eau à Dakar ?', 'Le prix dépend de la panne et des pièces nécessaires. Un remplacement de résistance ou de thermostat est généralement moins coûteux qu\’une fuite sur le ballon. FIX clarifie le coût avant toute intervention importante.'],
+    ['Peut-on réparer un chauffe-eau qui ne chauffe plus du tout ?', 'Oui dans la majorité des cas. Eau froide = souvent résistance ou thermostat en panne, pièces remplaçables. Si le ballon lui-même est percé ou très rouillé, un remplacement peut être préférable.'],
+    ['Intervenez-vous en urgence pour une fuite de chauffe-eau ?', 'En cas de fuite visible, coupez l\’alimentation électrique et l\’arrivée d\’eau avant tout. Envoyez une photo sur WhatsApp pour que FIX qualifie l\’urgence et oriente un technicien disponible rapidement.'],
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -176,6 +186,30 @@ export default function ChauffeEauRepairClient() {
 
       <section className="section cards service-type-cards">
         {heaterServices.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}
+      </section>
+
+      <section className="section brand-section">
+        <p className="eyebrow">Marques prises en charge</p>
+        <h2>Chauffe-eau des grandes marques réparés à Dakar.</h2>
+        <div className="brand-grid">
+          {['Ariston', 'Atlantic', 'Roch', 'Beko', 'Haier', 'Hisense'].map((b) => (
+            <span key={b}>{b}</span>
+          ))}
+        </div>
+        <div className="promise-cards" style={{ marginTop: '32px' }}>
+          <article>
+            <b>Ariston & Atlantic</b>
+            <p>Marques européennes très répandues à Dakar. Pannes fréquentes : résistance calcifiée, thermostat défaillant ou fuite du groupe de sécurité.</p>
+          </article>
+          <article>
+            <b>Roch & Beko</b>
+            <p>Chauffe-eaux accessibles et courants au Sénégal. Résistance et thermostat remplaçables, pièces disponibles localement.</p>
+          </article>
+          <article>
+            <b>Haier & Hisense</b>
+            <p>Marques asiatiques en forte progression à Dakar. Diagnostic possible sur toutes pannes : chauffe insuffisante, fuite ou disjonction.</p>
+          </article>
+        </div>
       </section>
 
       <section className="section promise-section">
