@@ -16,6 +16,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  openGraph: {
+    title: 'FIX Dépannage Dakar | Réparation machine à laver à Dakar',
+    description: 'FIX Dakar intervient pour la réparation de machine à laver, dépannage électroménager et assistance WhatsApp rapide à Dakar.',
+    url: 'https://fix.fenixfuz.com',
+    siteName: 'FIX Dépannage Dakar',
+    images: [{ url: '/assets/og-image.png', width: 1200, height: 630 }],
+    locale: 'fr_SN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/assets/og-image.png'],
+  },
 };
 
 const structuredData = {
