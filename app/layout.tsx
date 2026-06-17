@@ -37,6 +37,8 @@ const structuredData = {
   '@id': `${siteUrl}/#localbusiness`,
   name: 'FIX Dépannage Dakar',
   url: siteUrl,
+  logo: `${siteUrl}/assets/fix-logo.png`,
+  image: `${siteUrl}/assets/fix-logo.png`,
   telephone: '+221788208080',
   areaServed: {
     '@type': 'City',
