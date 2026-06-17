@@ -1,7 +1,7 @@
 import ClimatiseurRepairClient from './ClimatiseurRepairClient';
 
 export const metadata = {
-  title: 'Réparation climatiseur Dakar | Dépannage climatisation - FIX Dakar',
+  title: 'FIX Dépannage Dakar | Réparation climatiseur à Dakar',
   description:
     'Réparation climatiseur à Dakar : clim qui ne refroidit plus, fuite d’eau, bruit, entretien ou dépannage climatisation. Contact rapide WhatsApp avec FIX Dakar.',
   keywords: [
@@ -18,17 +18,17 @@ export const metadata = {
     canonical: '/reparation-climatiseur-dakar',
   },
   openGraph: {
-    title: 'Réparation climatiseur à Dakar | FIX Dakar',
+    title: ‘FIX Dépannage Dakar | Réparation climatiseur à Dakar’,
     description:
-      'Clim qui ne refroidit plus, fuite d’eau, bruit ou entretien ? Contact rapide WhatsApp pour dépannage climatiseur à Dakar.',
-    url: 'https://fix.fenixfuz.com/reparation-climatiseur-dakar',
-    siteName: 'FIX Dakar',
+      ‘Clim qui ne refroidit plus, fuite d’eau, bruit ou entretien ? Contact rapide WhatsApp pour dépannage climatiseur à Dakar.’,
+    url: ‘https://fix.fenixfuz.com/reparation-climatiseur-dakar’,
+    siteName: ‘FIX Dépannage Dakar’,
     type: 'website',
     locale: 'fr_SN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Réparation climatiseur à Dakar | FIX Dakar',
+    title: 'FIX Dépannage Dakar | Réparation climatiseur à Dakar',
     description:
       'Dépannage climatiseur à Dakar : clim qui ne refroidit plus, fuite, bruit ou entretien. Contact WhatsApp rapide.',
   },

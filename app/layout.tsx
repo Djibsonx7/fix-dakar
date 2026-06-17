@@ -7,7 +7,7 @@ const gaMeasurementId = 'G-GZTJW5JJFF';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'FIX Dakar | Réparation machine à laver à Dakar',
+  title: 'FIX Dépannage Dakar | Réparation machine à laver à Dakar',
   description:
     'FIX Dakar intervient pour la réparation de machine à laver, dépannage électroménager et assistance WhatsApp rapide à Dakar.',
   verification: {
