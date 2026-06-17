@@ -3,7 +3,7 @@ import ClimatiseurRepairClient from './ClimatiseurRepairClient';
 export const metadata = {
   title: 'FIX Dépannage Dakar | Réparation climatiseur à Dakar',
   description:
-    'Réparation climatiseur à Dakar : clim qui ne refroidit plus, fuite d’eau, bruit, entretien ou dépannage climatisation. Contact rapide WhatsApp avec FIX Dakar.',
+    ‘Réparation climatiseur à Dakar : clim qui ne refroidit plus, fuite d\’eau, bruit, entretien ou dépannage climatisation. Contact rapide WhatsApp avec FIX Dakar.’,
   keywords: [
     'réparation climatiseur Dakar',
     'dépannage climatiseur Dakar',
@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: ‘FIX Dépannage Dakar | Réparation climatiseur à Dakar’,
     description:
-      ‘Clim qui ne refroidit plus, fuite d’eau, bruit ou entretien ? Contact rapide WhatsApp pour dépannage climatiseur à Dakar.’,
+      ‘Clim qui ne refroidit plus, fuite d\’eau, bruit ou entretien ? Contact rapide WhatsApp pour dépannage climatiseur à Dakar.’,
     url: ‘https://fix.fenixfuz.com/reparation-climatiseur-dakar’,
     siteName: ‘FIX Dépannage Dakar’,
     type: 'website',
