@@ -30,6 +30,7 @@ const appliances = [
   { name: 'Frigo', detail: 'Problème de froid · Bruit anormal', href: '/reparation-frigo-dakar' },
   { name: 'Climatiseur', detail: 'Ne refroidit plus · Entretien', href: '/reparation-climatiseur-dakar' },
   { name: 'Chauffe-eau', detail: 'Ne chauffe plus · Disjonction', href: '/reparation-chauffe-eau-dakar' },
+  { name: 'Wifi / Réseau', detail: 'Zone morte · Installation routeur · Starlink', href: '/reparation-wifi-dakar' },
 ];
 const liveUpdates = [
   { status: 'Demande reçue', title: 'Machine qui ne vidange plus', meta: 'Yoff • WhatsApp' },
