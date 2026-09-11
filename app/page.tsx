@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import ProBanner from '@/components/ProBanner';
+import ProBottomBlock from '@/components/ProBottomBlock';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -144,8 +146,13 @@ export default function HomePage() {
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Machine à laver • Électroménager</small></div>
         </div>
-        <a className="nav-cta" href={whatsappLink(quickMessage())} data-conversion="whatsapp-header">WhatsApp</a>
+        <div className="nav-actions">
+          <Link className="nav-pro-link" href="/professionnels">Professionnels</Link>
+          <a className="nav-cta" href={whatsappLink(quickMessage())} data-conversion="whatsapp-header">WhatsApp</a>
+        </div>
       </nav>
+
+      <ProBanner />
 
       <section className="hero">
         <div className="hero-copy">
@@ -225,6 +232,7 @@ export default function HomePage() {
       <section className="section"><p className="eyebrow">Zones d'intervention</p><h2>Dakar et quartiers proches.</h2><div className="areas">{displayAreas.map((a) => <span key={a}>{a}</span>)}<span>Autres quartiers à Dakar</span></div></section>
       <section className="section faq-section"><p className="eyebrow">Questions fréquentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
+      <ProBottomBlock />
       <footer className="footer upgraded-footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div><div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-footer">{displayPhone}</a><a className="footer-contact" href="mailto:contact@fenixfuz.com">contact@fenixfuz.com</a><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div></footer>
     </main>
   );

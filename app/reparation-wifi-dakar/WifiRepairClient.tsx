@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import ProBanner from '@/components/ProBanner';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -120,8 +121,13 @@ export default function WifiRepairClient() {
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Wifi • Réseau</small></div>
         </Link>
-        <a className="nav-cta" href={whatsappLink(simpleWifiMessage)} data-conversion="whatsapp-wifi-header">WhatsApp</a>
+        <div className="nav-actions">
+          <Link className="nav-pro-link" href="/professionnels">Professionnels</Link>
+          <a className="nav-cta" href={whatsappLink(simpleWifiMessage)} data-conversion="whatsapp-wifi-header">WhatsApp</a>
+        </div>
       </nav>
+
+      <ProBanner />
 
       <section className="hero service-hero">
         <div className="hero-copy">

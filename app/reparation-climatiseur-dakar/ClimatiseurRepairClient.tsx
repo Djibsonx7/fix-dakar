@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import ProBanner from '@/components/ProBanner';
+import ProBottomBlock from '@/components/ProBottomBlock';
 
 const phone = '221788208080';
 
@@ -95,8 +97,13 @@ export default function ClimatiseurRepairClient() {
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Climatiseur • Climatisation</small></div>
         </Link>
 
-        <a className="nav-cta" href={whatsappLink(simpleMessage)} data-conversion="whatsapp-clim-header">WhatsApp</a>
+        <div className="nav-actions">
+          <Link className="nav-pro-link" href="/professionnels">Professionnels</Link>
+          <a className="nav-cta" href={whatsappLink(simpleMessage)} data-conversion="whatsapp-clim-header">WhatsApp</a>
+        </div>
       </nav>
+
+      <ProBanner />
 
       <section className="hero service-hero">
         <div className="hero-copy">
@@ -175,6 +182,8 @@ export default function ClimatiseurRepairClient() {
         <p>Envoyez votre quartier et le problème constaté sur WhatsApp.</p>
         <a className="primary" href={whatsappLink(simpleMessage)} data-conversion="whatsapp-clim-final">Contacter FIX</a>
       </section>
+
+      <ProBottomBlock />
     </main>
   );
 }
