@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import ProBanner from '@/components/ProBanner';
+import ProBottomBlock from '@/components/ProBottomBlock';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -121,8 +123,13 @@ export default function FrigoRepairClient() {
           <span className="logo-mark"><Image src="/assets/fix-logo.png" alt="FIX Dakar" width={56} height={56} priority /></span>
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Frigo • Réfrigérateur</small></div>
         </Link>
-        <a className="nav-cta" href={whatsappLink(simpleFrigoMessage)} data-conversion="whatsapp-frigo-header">WhatsApp</a>
+        <div className="nav-actions">
+          <Link className="nav-pro-link" href="/professionnels">Professionnels</Link>
+          <a className="nav-cta" href={whatsappLink(simpleFrigoMessage)} data-conversion="whatsapp-frigo-header">WhatsApp</a>
+        </div>
       </nav>
+
+      <ProBanner />
 
       <section className="hero service-hero">
         <div className="hero-copy">
@@ -215,6 +222,8 @@ export default function FrigoRepairClient() {
         <p>Envoyez le quartier, la marque et le problème constaté sur WhatsApp.</p>
         <a className="primary" href={whatsappLink(simpleFrigoMessage)} data-conversion="whatsapp-frigo-final">Contacter FIX</a>
       </section>
+
+      <ProBottomBlock />
 
       <footer className="footer upgraded-footer">
         <div><b>FIX Dépannage Dakar</b><p>Réparation frigo, machine à laver et électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div>

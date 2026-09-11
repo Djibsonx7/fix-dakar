@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import ProBanner from '@/components/ProBanner';
+import ProBottomBlock from '@/components/ProBottomBlock';
 
 const phone = '221788208080';
 const displayPhone = '+221 78 820 80 80';
@@ -140,8 +142,13 @@ export default function ChauffeEauRepairClient() {
           <div className="brand-text"><strong>Dépannage Dakar</strong><small>Chauffe-eau • Eau chaude</small></div>
         </Link>
 
-        <a className="nav-cta" href={whatsappLink(simpleMessage)} data-conversion="whatsapp_click">WhatsApp</a>
+        <div className="nav-actions">
+          <Link className="nav-pro-link" href="/professionnels">Professionnels</Link>
+          <a className="nav-cta" href={whatsappLink(simpleMessage)} data-conversion="whatsapp_click">WhatsApp</a>
+        </div>
       </nav>
+
+      <ProBanner />
 
       <section className="hero service-hero">
         <div className="hero-copy">
@@ -238,6 +245,8 @@ export default function ChauffeEauRepairClient() {
         <p>Envoyez le quartier et le problème constaté sur WhatsApp.</p>
         <a className="primary" href={whatsappLink(simpleMessage)} data-conversion="whatsapp_click">Contacter FIX</a>
       </section>
+
+      <ProBottomBlock />
 
       <footer className="footer upgraded-footer">
         <div><b>FIX Dépannage Dakar</b><p>Réparation chauffe-eau, frigo et électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div>

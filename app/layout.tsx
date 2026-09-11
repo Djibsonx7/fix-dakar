@@ -86,7 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               var conversionLocation = link.getAttribute('data-conversion');
               var href = link.getAttribute('href') || '';
-              var eventName = href.indexOf('tel:') === 0 ? 'phone_click' : 'whatsapp_click';
+              var customEvent = link.getAttribute('data-ga-event');
+              var eventName = customEvent || (href.indexOf('tel:') === 0 ? 'phone_click' : 'whatsapp_click');
 
               if (typeof window.gtag === 'function') {
                 window.gtag('event', eventName, {
