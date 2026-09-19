@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { BatteryCharging, CarFront } from 'lucide-react';
 import ProBanner from '@/components/ProBanner';
 import ProBottomBlock from '@/components/ProBottomBlock';
 
@@ -56,15 +57,12 @@ function AutoVisual() {
     <div className="auto-visual-wrap">
       <div className="auto-orbit auto-orbit-one"></div>
       <div className="auto-orbit auto-orbit-two"></div>
-      <div className="auto-car">
-        <div className="auto-battery-badge" aria-hidden="true"></div>
-        <div className="auto-car-cabin"></div>
-        <div className="auto-car-body">
-          <div className="auto-car-light"></div>
-          <div className="auto-shine"></div>
+      <div className="auto-car-icon-shell" aria-hidden="true">
+        <div className="auto-car-icon-glow"></div>
+        <CarFront className="auto-car-icon" strokeWidth={1.65} />
+        <div className="auto-battery-badge auto-battery-badge-icon">
+          <BatteryCharging size={24} strokeWidth={2} />
         </div>
-        <div className="auto-car-wheel left"></div>
-        <div className="auto-car-wheel right"></div>
       </div>
       <div className="status-card auto-status auto-status-one"><b>Véhicule immobilisé</b><span>Remorquage ou batterie</span><small>Dakar</small></div>
       <div className="status-card auto-status auto-status-two"><b>Demande reçue</b><span>Position + véhicule</span><small>WhatsApp préparé</small></div>
@@ -78,11 +76,8 @@ type ContactVisualProps = { service: string; area: string };
 function AutoContactVisual({ service, area }: ContactVisualProps) {
   return (
     <div className="contact-visual auto-contact-visual" aria-label="Aperçu du message WhatsApp auto préparé">
-      <div className="mini-auto">
-        <div className="mini-auto-cabin"></div>
-        <div className="mini-auto-body"></div>
-        <div className="mini-auto-wheel left"></div>
-        <div className="mini-auto-wheel right"></div>
+      <div className="mini-auto-icon-shell" aria-hidden="true">
+        <CarFront className="mini-auto-icon" strokeWidth={1.8} />
       </div>
       <div className="message-bubble bubble-one"><b>Service</b><span>{service}</span></div>
       <div className="message-bubble bubble-two"><b>Quartier</b><span>{area}</span></div>
