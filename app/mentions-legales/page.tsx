@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Mentions légales | FIX Dépannage Dakar',
+  description: 'Mentions légales du service FIX Dépannage Dakar.',
+  alternates: { canonical: '/mentions-legales' },
+};
+
 export default function MentionsLegales() {
   return (
     <main style={{padding:'60px 24px',maxWidth:'900px',margin:'0 auto',color:'#fff',fontFamily:'Inter, Arial, sans-serif'}}>
