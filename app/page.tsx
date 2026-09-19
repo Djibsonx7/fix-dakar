@@ -210,6 +210,14 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <Link className="appliance-card" href="/depannage-auto-dakar" style={{ maxWidth: 360 }}>
+          <span>🚗 Dépannage automobile</span>
+          <small>Remorquage · SOS batterie</small>
+          <b>Voir FIX Auto →</b>
+        </Link>
+      </section>
+
       <section className="section brand-section">
         <p className="eyebrow">Marques réparées</p>
         <h2>Compatible avec les grandes marques de machine à laver.</h2>
@@ -233,7 +241,7 @@ export default function HomePage() {
       <section className="section faq-section"><p className="eyebrow">Questions fréquentes</p><h2>Avant de contacter FIX.</h2><FaqAccordion /></section>
       <section className="final-cta"><h2>Besoin d’un dépannage machine à laver ?</h2><p>FIX Dakar vous répond rapidement sur WhatsApp.</p><a className="primary" href={whatsappLink(quickMessage())} data-conversion="whatsapp-final">Contacter FIX</a></section>
       <ProBottomBlock />
-      <footer className="footer upgraded-footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div><div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-footer">{displayPhone}</a><a className="footer-contact" href="mailto:contact@fenixfuz.com">contact@fenixfuz.com</a><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div></footer>
+      <footer className="footer upgraded-footer"><div><b>FIX Dépannage Dakar</b><p>Réparation machine à laver et dépannage électroménager à Dakar.</p><span>Dakar • Intervention selon disponibilité</span></div><div className="footer-links"><a className="footer-contact" href={`tel:+${phone}`} data-conversion="call-footer">{displayPhone}</a><a className="footer-contact" href="mailto:contact@fenixfuz.com">contact@fenixfuz.com</a><Link className="footer-legal" href="/depannage-auto-dakar">FIX Auto</Link><Link className="footer-legal" href="/mentions-legales">Mentions légales</Link><Link className="footer-legal" href="/confidentialite">Confidentialité</Link></div></footer>
     </main>
   );
 }
