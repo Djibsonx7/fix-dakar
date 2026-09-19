@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Politique de confidentialité | FIX Dépannage Dakar',
+  description: 'Politique de confidentialité du service FIX Dépannage Dakar.',
+  alternates: { canonical: '/confidentialite' },
+};
+
 export default function Confidentialite() {
   return (
     <main style={{padding:'60px 24px',maxWidth:'900px',margin:'0 auto',color:'#fff',fontFamily:'Inter, Arial, sans-serif'}}>
