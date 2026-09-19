@@ -1,0 +1,41 @@
+name: Prepare Next.js 15 upgrade
+
+on:
+  push:
+    branches:
+      - chore-next15-upgrade-2026-09-19
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Upgrade Next.js maintenance LTS
+        run: npm install next@15.5.24 eslint-config-next@15.5.24 --save-exact
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit lockfile update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No dependency changes to commit."
+          else
+            git commit -m "Upgrade Next.js to 15.5.24"
+            git push
+          fi
